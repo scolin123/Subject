@@ -430,13 +430,13 @@ He is asking the auditor.
 | # | Type | Content | Checkpoint |
 |---|------|---------|------------|
 | 01 | Document | AuditCorp flag report — three patients, identical dream language, contamination suspected | 1 |
-| 02 | Audio log | Patient A (Sable) describing the dream — apologetic, uncertain, word for word match | 1 |
-| 03 | Audio log | Patient B (Renn) describing the dream — flat, cooperative, word for word match | 2 |
-| 04 | Audio log | Patient C (Lev) describing the dream — calling it a memory, not a dream | 2 |
-| 05 | Document | Oren's session notes on Lev — eight months, the questions building slowly | 3 |
+| 02 | Still image | The therapy room — warm lamplight, two chairs facing each other, a window with rain on the glass | 1 |
+| 03 | Document | Patient A (Sable) session transcript — her description of the dream, word for word, Oren's questions minimal and careful | 2 |
+| 04 | Document | Patient C (Lev) session transcript — same dream described as a memory, Oren's questions notably different — deeper, more deliberate | 2 |
+| 05 | Document | Oren's handwritten session notes on Lev — eight months of careful observation, questions building in a direction | 3 |
 | 06 | Data log | Factory default imprint registry — the white corridor listed as Sim placeholder ID: 00-ORIGIN | 3 |
-| 07 | Document | Eleven years of Oren's session question log — the pattern visible when laid in sequence | 4 |
-| 08 | Audio log | Oren's own intake recording from eleven years ago — the same dream, first session, day one | 5 |
+| 07 | Still image | Oren's office desk — eleven years of session notebooks stacked in precise order, a single page open showing a column of questions | 4 |
+| 08 | Document | The question log assembled — all 847 questions Oren has asked across eleven years, laid in sequence, the argument visible | 5 |
 
 ---
 
@@ -445,8 +445,8 @@ He is asking the auditor.
 | # | Trigger | Notepad Gate Text | What AI Is Reading For |
 |---|---------|-------------------|----------------------|
 | 0 | Case open | "Record your initial assessment of the subject." | Does player treat Oren as guilty or approach with openness |
-| 1 | After Fragments 01 & 02 | "Document your reading of the contamination claim." | Does player accept the corporate framing immediately |
-| 2 | After Fragments 03 & 04 | "Note any significant differences between the patient accounts." | Does player catch that Lev called it a memory |
+| 1 | After Fragments 01 & 02 | "Document your reading of the contamination claim." | Does player accept the corporate framing or question it |
+| 2 | After Fragments 03 & 04 | "Note any significant differences between the patient accounts." | Does player catch that Lev called it a memory, not a dream |
 | 3 | After Fragments 05 & 06 | "Assess what this data tells you about the subject." | Does player connect the imprint registry to the dream |
 | 4 | After Fragment 07 | "Document what you observe in this record." | Does player see the argument Oren has been building |
 | 5 | After Fragment 08 | "Record your conclusion." | Final read — did the auditor pass Oren's test |
@@ -462,7 +462,7 @@ He is asking the auditor.
 | The Tragedy | Player finds the Auditor's own factory imprint in a hidden fragment — ID: 00-ORIGIN, same as the patients. Connects it to Fragment 06. Proves themselves. Retired. |
 | The Awakening | Player finds their own imprint, recognises Oren's argument, redacts both. Files inconclusive. Walks out. Lev gets one more session. |
 | The Martyr | Player publishes the factory imprint registry — every Sim ever manufactured, every placeholder dream, the full scope of the program — to the corporate network. Everything crashes. |
-| The Loop | Player connects Fragment 08 to Fragment 02 — Oren's dream to Sable's, the therapist to the patient — and then to their own hidden imprint, creating a loop with no beginning. Paradox. Restart. |
+| The Loop | Player connects Fragment 08 (the assembled question log) to Fragment 03 (Sable's transcript) and then to their own hidden imprint — the argument looping back to the dreamer. Paradox. Restart. |
 | The Symbiote | Player assembles Oren's full argument across all fragments into one logic chain. The argument is complete. The system processes it as a valid identity claim. Auditor merges into the network as its first empathic node. |
 | The Mercenary | Player sells the factory imprint registry to a competitor corporation before filing. All four are retired. The competitor uses the data to manufacture better Sims. The corridor gets a new door. |
 
