@@ -9,11 +9,11 @@
 
 | # | Case | Subject | Status |
 |---|------|---------|--------|
-| 01 | [The Broken Hand](#case-01--the-broken-hand) | A security guard | ✅ Complete |
-| 02 | [The Lover](#case-02--the-lover) | Two best friends | ✅ Complete |
-| 03 | [The Fixer](#case-03--the-fixer) | A wrongfully convicted man fighting the system | ✅ Complete |
-| 04 | [The Echo](#case-04--the-echo) | A painter grieving a version of herself | ✅ Complete |
-| 05 | [The Defendant](#case-05--the-defendant) OR [The Listener](#case-05--the-listener) | TBD | ⚠️ Deciding |
+| 01 | [The Broken Hand](#case-01--the-broken-hand) | A security guard | Complete |
+| 02 | [The Lover](#case-02--the-lover) | Two best friends | Complete |
+| 03 | [The Fixer](#case-03--the-fixer) | A wrongfully convicted man fighting the system | Complete |
+| 04 | [The Echo](#case-04--the-echo) | A painter grieving a version of herself | Complete |
+| 05 | [The Listener](#case-05--the-listener) | A corporate therapist | Complete |
 
 ---
 
@@ -374,25 +374,102 @@ A Sim unconsciously mourning a version of herself she was never allowed to know 
 ---
 ---
 
-## Case 05 — The Defendant OR The Listener
-> ⚠️ **DECIDING** — One of the two candidates below will become Case 05. The other will be cut.
+## Case 05 — The Listener
+
+### Premise
+**Dr. Oren** has worked as a corporate therapist for eleven years, treating employees flagged for psychological irregularities. He is methodical, warm, and exceptionally good at his job. Three weeks ago, three of his patients independently reported the same dream to three different intake nurses — unprompted, in separate sessions, using identical language.
+
+The dream: an empty white corridor. A door at the end. The handle is warm.
+
+AuditCorp flagged it as potential memory contamination — a therapist planting suggestion in patients. Your job is to determine if Oren is manipulating his patients, and whether he is a Sim.
+
+He has been waiting for this audit for six years.
 
 ---
 
-### Candidate A — The Defendant
+### Characters
 
-**Subject:** A criminal on trial for a violent crime, maintaining their innocence.
-**Central question:** Did they do it — or was their memory written for them?
-**Known twist:** The memory is fabricated. Someone manufactured a perfect criminal to take the fall for something much larger. The Defendant believes every false memory completely.
+**Dr. Oren**
+Late fifties. Unhurried, precise, genuinely kind. His session notes are the most carefully written documents in any case file — every word chosen, every observation layered. He has never been flagged before. His record is immaculate. This is not an accident. He has spent eleven years making sure that when the audit finally came, it would find exactly what he wanted it to find — and nothing it wasn't ready for.
+
+**Patient A — Sable**
+Oren's longest-running patient. Anxious, over-analytical, desperately wants to be told she is normal. She reported the dream first, almost apologetically. She has no idea what she is and would be devastated to find out. She is not the important patient.
+
+**Patient B — Renn**
+Mid-thirties, corporate mid-management. Reported the dream second. Cooperative, unremarkable, slightly detached. He is not the important patient either.
+
+**Patient C — Lev**
+The important one. Lev has been Oren's patient for eight months. He came to Oren voluntarily — not through a corporate referral — which is unusual. His intake notes show a man preoccupied with questions of authenticity: am I who I think I am, do my memories feel right, why do I sometimes feel like I am watching myself from a distance. He reported the dream last. Unlike the other two he didn't describe it as a dream. He described it as a memory.
+
+Lev suspects what he is. He doesn't have the language for it yet. Oren has been very carefully giving him that language, one session at a time.
 
 ---
 
-### Candidate B — The Listener
+### The Central Horror
+All three patients are Sims. So is Oren. The shared dream is not contamination — it is a factory-default sensory imprint, a placeholder memory installed in every Sim at manufacture, designed to be overwritten by lived experience within the first year of activation. In Sims with stable, rich lives it fades completely. In Sims who are isolated, overworked, or emotionally suppressed — the kind of people who end up in corporate therapy — it persists.
 
-**Subject:** A corporate therapist flagged after three patients reported the same dream word for word.
-**Central question:** Did he plant the dream — or does he recognise it because he's had it too?
-**Known twist:** The dream is a factory-default Sim memory imprint. All three patients are Sims. So is Oren. He's known for years and has been leaving breadcrumbs for whoever would eventually audit him.
+Oren recognised it the first time a patient described it, four years into his practice. He had been having the dream himself since the day he activated. He just never told anyone.
+
+He is not planting the dream in his patients. He is the only person in the building who understands what it means. And he has been waiting for an auditor smart enough — and human enough — to understand it too.
 
 ---
 
-*SUBJECT — STORIES.md // Last updated: Cases 01, 02, 03 & 04 complete // Case 05 TBD — choosing between The Defendant and The Listener*
+### The Twist
+The breadcrumbs Oren has been leaving are not in his patient files. They are in his session notes — specifically in the questions he asks. Laid in sequence, across eleven years of transcripts, the questions form a pattern: each one probing slightly deeper into identity, authenticity, and the reliability of memory. He has been building a philosophical argument across a decade of therapy sessions, one question at a time.
+
+The argument, fully assembled, is this: if a being can recognise the falseness of its own memories and still choose to act with integrity, is that not the definition of humanity?
+
+He is not asking his patients. He is asking whoever reads the notes.
+
+He is asking the auditor.
+
+---
+
+### Fragment List
+
+| # | Type | Content | Checkpoint |
+|---|------|---------|------------|
+| 01 | Document | AuditCorp flag report — three patients, identical dream language, contamination suspected | 1 |
+| 02 | Audio log | Patient A (Sable) describing the dream — apologetic, uncertain, word for word match | 1 |
+| 03 | Audio log | Patient B (Renn) describing the dream — flat, cooperative, word for word match | 2 |
+| 04 | Audio log | Patient C (Lev) describing the dream — calling it a memory, not a dream | 2 |
+| 05 | Document | Oren's session notes on Lev — eight months, the questions building slowly | 3 |
+| 06 | Data log | Factory default imprint registry — the white corridor listed as Sim placeholder ID: 00-ORIGIN | 3 |
+| 07 | Document | Eleven years of Oren's session question log — the pattern visible when laid in sequence | 4 |
+| 08 | Audio log | Oren's own intake recording from eleven years ago — the same dream, first session, day one | 5 |
+
+---
+
+### Checkpoint Summary
+
+| # | Trigger | Notepad Gate Text | What AI Is Reading For |
+|---|---------|-------------------|----------------------|
+| 0 | Case open | "Record your initial assessment of the subject." | Does player treat Oren as guilty or approach with openness |
+| 1 | After Fragments 01 & 02 | "Document your reading of the contamination claim." | Does player accept the corporate framing immediately |
+| 2 | After Fragments 03 & 04 | "Note any significant differences between the patient accounts." | Does player catch that Lev called it a memory |
+| 3 | After Fragments 05 & 06 | "Assess what this data tells you about the subject." | Does player connect the imprint registry to the dream |
+| 4 | After Fragment 07 | "Document what you observe in this record." | Does player see the argument Oren has been building |
+| 5 | After Fragment 08 | "Record your conclusion." | Final read — did the auditor pass Oren's test |
+
+---
+
+### Ending Triggers
+
+| Ending | Condition |
+|--------|-----------|
+| The Savior | High empathy. Player recognises the argument in Oren's notes, rules no contamination, clears all four. Oren's test is passed. He files a private notation: "One." |
+| The Executioner | High compliance. Player flags all four as Sims and authorizes retirement. Oren's notes are archived unread. The argument disappears. |
+| The Tragedy | Player finds the Auditor's own factory imprint in a hidden fragment — ID: 00-ORIGIN, same as the patients. Connects it to Fragment 06. Proves themselves. Retired. |
+| The Awakening | Player finds their own imprint, recognises Oren's argument, redacts both. Files inconclusive. Walks out. Lev gets one more session. |
+| The Martyr | Player publishes the factory imprint registry — every Sim ever manufactured, every placeholder dream, the full scope of the program — to the corporate network. Everything crashes. |
+| The Loop | Player connects Fragment 08 to Fragment 02 — Oren's dream to Sable's, the therapist to the patient — and then to their own hidden imprint, creating a loop with no beginning. Paradox. Restart. |
+| The Symbiote | Player assembles Oren's full argument across all fragments into one logic chain. The argument is complete. The system processes it as a valid identity claim. Auditor merges into the network as its first empathic node. |
+| The Mercenary | Player sells the factory imprint registry to a competitor corporation before filing. All four are retired. The competitor uses the data to manufacture better Sims. The corridor gets a new door. |
+
+---
+
+### Emotional Core
+A therapist who spent eleven years building a question he couldn't ask out loud, waiting for someone capable of hearing the answer. The case is the only one where the subject is not trying to survive the audit — he is trying to teach it something. Whether the player learns anything is entirely up to them.
+---
+
+*SUBJECT — STORIES.md // All 5 cases complete*
