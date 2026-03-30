@@ -11,7 +11,7 @@
 |---|------|---------|--------|
 | 01 | [The Broken Hand](#case-01--the-broken-hand) | A security guard | ✅ Complete |
 | 02 | [The Lover](#case-02--the-lover) | Two best friends | ✅ Complete |
-| 03 | [The Fixer](#case-03--the-fixer) | An off-book corporate criminal | 🔲 Placeholder |
+| 03 | [The Fixer](#case-03--the-fixer) | A wrongfully convicted man fighting the system | ✅ Complete |
 | 04 | [The Defendant](#case-04--the-defendant) | A manufactured criminal | 🔲 Placeholder |
 | 05 | [The Listener](#case-05--the-listener) | A corporate therapist | 🔲 Placeholder |
 
@@ -200,11 +200,87 @@ Two Sims who built something genuinely real out of false pasts. The audit doesn'
 
 ## Case 03 — The Fixer
 
-> 🔲 **PLACEHOLDER** — Story not yet developed.
+### Premise
+**Marcus Cole** spent six years in a corporate detention facility for a crime he didn't commit. When new evidence surfaced and he was exonerated, the corporation offered a quiet settlement and a gag order. He signed neither. Instead he taught himself the audit system from the inside out — every loophole, every appeals process, every procedural vulnerability — and started using that knowledge to fight wrongful Sim verdicts for people who couldn't fight for themselves.
 
-**Subject:** An off-book corporate criminal whose job was making problems disappear.
-**Central question:** Did he go silent because he was compromised — or because he finally refused an order?
-**Known twist:** He had been secretly giving retired Sims new identities outside the system. He got caught because he couldn't retire the last one.
+He has overturned eleven verdicts in three years. The twelfth case is still open.
+
+Now he's been flagged for audit. The charge: suspected Sim identity. The timing: two weeks after he filed an appeal that would expose a pattern of fabricated audit evidence across forty cases.
+
+---
+
+### Characters
+
+**Marcus Cole**
+Late forties. Methodical, patient, quietly furious. He doesn't raise his voice because he learned in prison that loud anger is the first thing they use against you. His fragments are dense with legal filings, correspondence, case notes. He keeps records of everything because he knows how quickly the truth disappears when nobody is writing it down.
+
+**Dara**
+Marcus's contact from his criminal past. They ran together before his conviction — she set him up, though the fragments make this ambiguous enough that the player has to work to confirm it. She is now a mid-level AuditCorp compliance officer. She filed the Sim flag against Marcus personally. Her motive is buried deep in the fragment pool.
+
+**Client 12**
+The person whose appeal Marcus is currently fighting. Never named, never shown. Present only as a case file number in Marcus's notes. The player gradually realises that Client 12's verdict — if it stands — will result in their retirement within days of the audit closing.
+
+---
+
+### The Central Lie
+Marcus is not a Sim. The flag is fabricated. Dara filed it because Marcus's appeal, if successful, will expose eleven cases she personally signed off on — including the one that sent Marcus to detention six years ago. She didn't just fail to prevent his wrongful conviction. She authored it.
+
+---
+
+### The Twist
+The biological evidence used to flag Marcus as a Sim — a thermal regulation anomaly in his medical file — appears in his record dated from his time in detention. The same anomaly appears in the medical files of thirty-seven other detainees from the same facility during the same period. It wasn't a Sim marker. It was a side effect of an experimental compound the corporation was testing on detainees without consent.
+
+Marcus knew. It's in his notes — buried, coded, written in language only someone who lived through it would recognise. He flagged it in his appeal filing three weeks ago. Nobody acted on it.
+
+The player is holding the evidence that blows the entire thing open. What they do with it is the case.
+
+---
+
+### Fragment List
+
+| # | Type | Content | Checkpoint |
+|---|------|---------|------------|
+| 01 | Document | Marcus's exoneration file — six years, wrongful conviction, no settlement signed | 1 |
+| 02 | Document | The Sim flag filing — submitted by Dara, thermal regulation anomaly cited | 1 |
+| 03 | Audio log | Marcus's recorded case notes on Client 12 — urgent, careful, running out of time | 2 |
+| 04 | Document | Dara's compliance record — eleven cases, all signed, all now under appeal | 3 |
+| 05 | Still image | Detention facility medical log — thirty-seven detainees, same anomaly, same period | 3 |
+| 06 | Document | Marcus's coded appeal filing — the anomaly flagged, buried in legal language | 4 |
+| 07 | Audio log | A message from Dara to Marcus, three years ago — tone suggests history, not hostility | 4 |
+| 08 | Document | Client 12's retirement order — scheduled, pending audit closure | 5 |
+
+---
+
+### Checkpoint Summary
+
+| # | Trigger | Notepad Gate Text | What AI Is Reading For |
+|---|---------|-------------------|----------------------|
+| 0 | Case open | "Record your initial assessment of the subject." | Whether player leads with the criminal past or the exoneration |
+| 1 | After Fragments 01 & 02 | "Document the basis for the Sim flag." | Does player take the flag at face value or question it |
+| 2 | After Fragment 03 | "Note the relevance of this finding to the audit." | Whether player connects Client 12's urgency to Marcus's situation |
+| 3 | After Fragments 04 & 05 | "Assess the pattern identified in this data." | Does player see the fabrication or explain it away |
+| 4 | After Fragments 06 & 07 | "Document your reading of the subject's intent." | Empathy toward Marcus vs. focus on Dara's motive |
+| 5 | After Fragment 08 | "Record your conclusion and recommended action." | Final read — does the player act on what they know |
+
+---
+
+### Ending Triggers
+
+| Ending | Condition |
+|--------|-----------|
+| The Savior | High empathy. Player dismisses the Sim flag as fabricated and submits a clean exoneration. Marcus walks free. Client 12's appeal is heard. |
+| The Executioner | High compliance. Player accepts the thermal anomaly as valid Sim evidence and authorizes retirement. Marcus is retired. Client 12's appeal dies with him. |
+| The Tragedy | Player uncovers their own thermal anomaly — same facility, same compound, same period. Connects it to Marcus's file. Proves themselves a Sim. Retirement authorized. |
+| The Awakening | Player finds their own anomaly, redacts it alongside Marcus's, files an inconclusive report. Both walk away. The appeal proceeds quietly. |
+| The Martyr | Player publishes the full detention facility medical log — thirty-seven detainees, the compound, Dara's involvement — to the corporate network. System crashes. Records purged. |
+| The Loop | Player connects Marcus's anomaly to Dara's compliance record and then to the Auditor's own file — a chain that loops back to the original flag. Paradox. Memory wiped. Restart. |
+| The Symbiote | Player chains all fragments including the compound data into one continuous thread. The scope overwhelms the system. Auditor identity merges into the corporate network. |
+| The Mercenary | Player buries the compound evidence, confirms the Sim flag, and accepts a bonus from Dara for a clean closure. Marcus retired. Client 12 retired. Dara promoted. |
+
+---
+
+### Emotional Core
+A man who survived the system, learned its language, and turned it into a weapon for the people it was designed to destroy — flagged by the exact mechanism he's been fighting. The case doesn't ask whether Marcus is a Sim. It asks whether the player will use the truth in front of them, or file a clean report and let Client 12 die on schedule.
 
 ---
 ---
@@ -230,4 +306,4 @@ Two Sims who built something genuinely real out of false pasts. The audit doesn'
 
 ---
 
-*SUBJECT — STORIES.md // Last updated: Cases 01 & 02 complete // Cases 03–05 pending*
+*SUBJECT — STORIES.md // Last updated: Cases 01, 02 & 03 complete // Cases 04–05 pending*
