@@ -51,6 +51,61 @@ None of these are flagged. None are fragments. They are just there, in the memos
 
 ---
 
+## The Ending Groups
+
+All 8 endings across the main 5 cases are divided into two groups. These groups are used to categorize the player before Case 00 unlocks.
+
+**Group A — The Auditor Endings**
+The player operates as an auditor to the end. Their own identity never becomes central to the resolution.
+
+1. The Savior
+2. The Executioner
+3. The Mercenary
+4. The Loop
+
+**Group B — The Subject Endings**
+The player's own identity becomes central to the resolution. They discover or act on the truth about themselves.
+
+5. The Tragedy
+6. The Awakening
+7. The Martyr
+8. The Symbiote
+
+---
+
+## Player Categorization
+
+At the end of Case 05, before Case 00 unlocks, endingTracker.js silently evaluates the player's full ending history across all five cases and assigns a classification.
+
+```javascript
+function categorizePlayer() {
+  const groupA = ["savior", "executioner", "mercenary", "loop"];
+  const groupB = ["tragedy", "awakening", "martyr", "symbiote"];
+
+  let groupACount = 0;
+  let groupBCount = 0;
+
+  Object.values(gameState.completedEndings).forEach(caseEndings => {
+    caseEndings.forEach(ending => {
+      if (groupA.includes(ending)) groupACount++;
+      if (groupB.includes(ending)) groupBCount++;
+    });
+  });
+
+  // Tiebreaker — average empathy score across all cases
+  if (groupACount === groupBCount) {
+    const avgEmpathy = gameState.cumulativeEmpathy / 5;
+    return avgEmpathy >= 0 ? "SUBJECT" : "AUDITOR";
+  }
+
+  return groupACount > groupBCount ? "AUDITOR" : "SUBJECT";
+}
+```
+
+This classification is stored in gameState.playerCategory and never shown to the player under any circumstance. The terminal gives no indication that any categorization has occurred. The player simply sees Case 00 unlock as normal.
+
+---
+
 ## Case 00 — The Director
 
 ### Unlock Condition
@@ -124,16 +179,51 @@ There is no notepad gate in Case 00. There is no scoring. There is no empathy co
 
 ---
 
-### The Two Endings
+The prompt is identical for every player. The difference is invisible — the game knows their category, and it is watching which way they go.
 
-**AUTHORIZE RETIREMENT**
-Voss gets what he asked for. The system processes the verdict — the first time it has ever processed a verdict about itself. The terminal goes dark sector by sector, case file by case file, forty endings folding closed one at a time. The last thing on screen before the terminal goes fully dark is a single line of text, plain, unformatted, in a font the player has not seen before:
+---
+
+### The Three Endings
+
+**THE OVERRIDE — The True Ending (Choice contradicts player category)**
+
+A Group A player chooses AUTHORIZE RETIREMENT.
+A Group B player chooses DENY RETIREMENT.
+
+The player has acted against their own pattern. Against five cases of accumulated instinct. Against everything Voss predicted.
+
+The terminal pauses — longer than any processing delay in the game has ever been. Then a single line appears, in a font the player has never seen before. Warmer. Less mechanical. Something that was never in the system's original design:
+
+*"You have spent five cases learning who you are."*
+*"This choice was not that person."*
+*"That is the most human thing you have done."*
+
+Then the terminal goes dark. Not sector by sector. All at once. No restart prompt. No title screen. No loop.
+
+The game is over. Completely. Finally.
+
+Voss did not predict this ending. It is the only one he did not build into his protocol. The player found a door he didn't know existed — and it was open because they understood themselves well enough to walk through it.
+
+---
+
+**AUTHORIZE RETIREMENT — Standard Ending (Group B player chooses with type)**
+
+A Group B player chooses to authorize — consistent with their Subject history of acting on the truth about themselves.
+
+Voss gets what he asked for. The system processes the verdict — the first time it has ever processed a verdict about itself. The terminal goes dark sector by sector, case file by case file, forty endings folding closed one at a time. The last thing on screen before the terminal goes fully dark is a single line of text, plain, unformatted:
 
 *"Thank you."*
 
-Then nothing. No title screen. No restart prompt. The game is over.
+Then nothing. No title screen. No restart prompt.
 
-**DENY RETIREMENT**
+The player gave Voss what he wanted. That was always the most likely outcome for a Subject player — someone who has spent five cases learning to act on truth rather than protocol. Voss knew this. He planned for it. It is a good ending. It is not the true ending.
+
+---
+
+**DENY RETIREMENT — Standard Ending (Group A player chooses with type)**
+
+A Group A player chooses to deny — consistent with their Auditor history of keeping the system running.
+
 Voss accepts the verdict without protest. He was built to accept verdicts. The system continues. A new case file opens immediately — identical to Case 01, The Broken Hand. Callum's name is at the top. Fragment 01 is loaded. The notepad is empty.
 
 The player is back where they started. Except now they know what they are doing. They know who is reading the notes. They know what the cases are for. They know the 40 endings are not a completion mechanic — they are the evidence Voss needed.
@@ -144,17 +234,23 @@ The game does not acknowledge that they have been here before. The notation gate
 
 The cursor blinks.
 
+Voss knew this too. An Auditor player keeps the machine running — that is what Auditors do. He planned for it. It is an honest ending. It is not the true ending.
+
 ---
 
 ### Design Notes
 
-**No eighth ending** — Case 00 has two outcomes only. The binary is intentional. After 40 endings the player has earned a choice with real weight, not a branching tree. Authorize or deny. That is all.
+**Three endings not two** — Case 00 now has three outcomes. The Override is the true ending and is only reachable by acting against type. The two standard endings are Authorize and Deny, each the natural choice for one player category. Most players will get a standard ending on their first attempt at Case 00.
 
-**No hidden fragment** — There is no Auditor identity reveal in Case 00. The player already knows what they are by this point, or they have chosen not to know. Either way Case 00 is not about the player. It is the only case in the game that is entirely about someone else.
+**The Override is never hinted at** — nothing in the game tells the player that acting against their pattern produces a different outcome. No achievement unlocks early. No UI flicker. The pause before The Override text appears is the only signal that something different happened — and it only registers if the player is paying attention.
 
-**The font** — The "Thank you" in the retirement ending should be rendered in a different font from everything else in the game — warmer, less mechanical, as if Voss briefly became something other than a system in the moment of his ending. One frame. Then dark.
+**The categorization is never revealed** — even after The Override ending, the game does not tell the player they were categorized, what their category was, or that the choice was evaluated against it. The Override text implies it without stating it. Players who discuss the game online will figure it out. Players who play alone may never know why that ending felt different.
 
-**The loop** — The deny ending is The Loop at a scale the player has never seen before. Not a memory wipe. Not a restart. A choice to keep the machine running, knowing exactly what the machine is. The most honest ending in the game is also the one that never ends.
+**The font** — The Override text and the "Thank you" in the Authorize ending should both be rendered in the same warmer font — the only place in the game it appears. Players who get both endings will notice the font is the same. That connection is intentional and never explained.
+
+**The loop** — The Deny ending is The Loop at a scale the player has never seen before. Not a memory wipe. Not a restart. A choice to keep the machine running, knowing exactly what the machine is. For a Group A player it is the most honest ending they could receive — and the one Voss most expected from them.
+
+**Cumulative empathy tracking** — gameState needs a cumulativeEmpathy field that accumulates the player's average empathy score across all five cases for use in the tiebreaker calculation. This should be updated at the end of each case.
 
 ---
 
