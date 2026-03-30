@@ -10,10 +10,10 @@
 | # | Case | Subject | Status |
 |---|------|---------|--------|
 | 01 | [The Broken Hand](#case-01--the-broken-hand) | A security guard | ✅ Complete |
-| 02 | [The Composer](#case-02--the-composer) | A musician | 🔲 Placeholder |
-| 03 | [The Witness](#case-03--the-witness) | A tribunal testifier | 🔲 Placeholder |
-| 04 | [The Lover](#case-04--the-lover) | Two people | 🔲 Placeholder |
-| 05 | [The Architect](#case-05--the-architect) | A city planner | 🔲 Placeholder |
+| 02 | [The Lover](#case-02--the-lover) | Two best friends | ✅ Complete |
+| 03 | [The Fixer](#case-03--the-fixer) | An off-book corporate criminal | 🔲 Placeholder |
+| 04 | [The Defendant](#case-04--the-defendant) | A manufactured criminal | 🔲 Placeholder |
+| 05 | [The Listener](#case-05--the-listener) | A corporate therapist | 🔲 Placeholder |
 
 ---
 
@@ -113,47 +113,121 @@ A Sim who doesn't know he's a Sim, performing an act of pure compassion, undone 
 ---
 ---
 
-## Case 02 — The Composer
+## Case 02 — The Lover
+
+### Premise
+AuditCorp has confirmed that one of two individuals — **Reed** and **Sable**, best friends of eleven years — is a Sim. Internal records are corrupted, making it impossible to determine which registration is valid. Your job is to audit their shared memory fragments and identify the Sim.
+
+Neither has been told why they are being audited. Neither has been told the other is involved.
+
+---
+
+### Characters
+
+**Reed**
+Warm, expressive, deeply sentimental. He keeps physical objects tied to memories — ticket stubs, photographs, a broken watch his father gave him. His fragments are rich with sensory detail. He cries easily. He laughs easily. On paper he is the most obviously human subject in the file.
+
+**Sable**
+Quieter, more internal. She processes emotion slowly and privately. She is logical where Reed is instinctive, measured where he is impulsive. Early in the audit she reads as the more likely Sim — cooler, more precise, less emotionally legible. She is not.
+
+**The Friendship**
+Eleven years. They met at a corporate housing block, both assigned to the same floor. Their shared memory fragments are extraordinary — overlapping, contradicting each other in the small ways real shared memories do, full of private language and inside references. The fragments feel more human than almost anything else in the audit. That is the trap.
+
+---
+
+### The Central Horror
+Neither Reed nor Sable is human. They are both Sims — different models, different manufacturers, both shipped with false origin memories and no knowledge of what they are. They found each other by accident and built something real out of manufactured pasts.
+
+The audit is not malfunctioning. The records are not corrupted by accident. AuditCorp knows exactly what they are. The "corruption" is a controlled experiment — they want to see if an auditor can distinguish between two Sims when one presents as more emotionally human than the other. The player is the variable being tested, not Reed and Sable.
+
+---
+
+### The Twist
+Deep in the fragment pool, buried under eleven years of shared memory, is a factory synchronisation log — a routine diagnostic ping that Sims emit every seven years without knowing it. Both Reed and Sable emitted one. On the same day. Sitting in the same room. Neither felt anything. Neither knew.
+
+The log is timestamped three years into their friendship. By that point they had already built most of what they were to each other. The ping didn't create the friendship. It just proved neither of them was what they thought they were — and that it didn't matter at all.
+
+---
+
+### Fragment List
+
+| # | Type | Content | Checkpoint |
+|---|------|---------|------------|
+| 01 | Document | Reed's intake questionnaire — warm, detailed, full of personal history | 1 |
+| 02 | Document | Sable's intake questionnaire — precise, minimal, emotionally guarded | 1 |
+| 03 | Still image | A photograph from their shared apartment — Reed and Sable, year three | 2 |
+| 04 | Audio log | Reed describing their first meeting, unprompted, in his own words | 2 |
+| 05 | Audio log | Sable describing the same meeting — small contradictions with Reed's version | 3 |
+| 06 | Data log | Factory synchronisation ping — Reed, year three | 4 |
+| 07 | Data log | Factory synchronisation ping — Sable, year three, same day, same room | 4 |
+| 08 | Document | AuditCorp internal memo — the experiment parameters, never meant to be found | 5 |
+
+---
+
+### Checkpoint Summary
+
+| # | Trigger | Notepad Gate Text | What AI Is Reading For |
+|---|---------|-------------------|----------------------|
+| 0 | Case open | "Record your initial approach to this case." | Whether player treats it as a puzzle or a human question |
+| 1 | After Fragments 01 & 02 | "Assess both subjects based on their statements." | Who the player suspects and why |
+| 2 | After Fragments 03 & 04 | "Document any details that feel significant." | Emotional vs. logical note-taking |
+| 3 | After Fragment 05 | "Note any discrepancies between the two accounts." | Whether player sees contradiction as evidence of Sim or human memory |
+| 4 | After Fragments 06 & 07 | "Assess the significance of this data." | Reaction to both being flagged |
+| 5 | After Fragment 08 | "Record your conclusion." | Final empathy/compliance read |
+
+---
+
+### Ending Triggers
+
+| Ending | Condition |
+|--------|-----------|
+| The Savior | High empathy. Player refuses to name either as Sim, submits inconclusive report. Both are released. |
+| The Executioner | High compliance. Player names Sable as the Sim based on emotional guardedness. She is retired. Reed never knows. |
+| The Tragedy | Player finds the experiment memo, connects both sync pings, and submits a report confirming both are Sims. Both are retired. |
+| The Awakening | Player finds the memo, redacts both sync pings, and files a report clearing both. System Detection stays low. Both walk free. |
+| The Martyr | Player publishes the experiment memo to the corporate network — exposing AuditCorp's controlled testing program. System crashes. All experiment records purged. |
+| The Loop | Player connects Reed's sync ping to Sable's questionnaire and vice versa — cross-wiring the identities. The system cannot assign either log to either subject. Paradox. Restart. |
+| The Symbiote | Player chains all eight fragments into one continuous identity thread — Reed and Sable as a single composite entity. Auditor's own identity merges into the chain. |
+| The Mercenary | Player names Reed as the Sim despite evidence pointing elsewhere, because his file is worth more to a corporate buyer. Reed is retired. Sable is none the wiser. |
+
+---
+
+### Emotional Core
+Two Sims who built something genuinely real out of false pasts. The audit doesn't destroy what they had — it just names what they were. The question the case leaves open: if everything they felt was real, does the origin of the feeling change its value?
+
+---
+---
+
+## Case 03 — The Fixer
 
 > 🔲 **PLACEHOLDER** — Story not yet developed.
 
-**Subject:** A musician accused of plagiarizing a dead composer's work.
-**Central question:** Did she steal from a dead man — or was he never dead?
-**Known twist:** TBD
+**Subject:** An off-book corporate criminal whose job was making problems disappear.
+**Central question:** Did he go silent because he was compromised — or because he finally refused an order?
+**Known twist:** He had been secretly giving retired Sims new identities outside the system. He got caught because he couldn't retire the last one.
 
 ---
 ---
 
-## Case 03 — The Witness
+## Case 04 — The Defendant
 
 > 🔲 **PLACEHOLDER** — Story not yet developed.
 
-**Subject:** Someone who testified in a corporate tribunal.
-**Central question:** Are the contradictions in her memory human error or Sim degradation?
-**Known twist:** TBD
+**Subject:** A criminal on trial for a violent crime, maintaining their innocence.
+**Central question:** Did they do it — or was their memory written for them?
+**Known twist:** The memory is fabricated. Someone manufactured a perfect criminal to take the fall for something much larger. The Defendant believes every false memory completely.
 
 ---
 ---
 
-## Case 04 — The Lover
+## Case 05 — The Listener
 
 > 🔲 **PLACEHOLDER** — Story not yet developed.
 
-**Subject:** Two people — one human, one Sim.
-**Central question:** Which one is human — and does it matter?
-**Known twist:** TBD
-
----
----
-
-## Case 05 — The Architect
-
-> 🔲 **PLACEHOLDER** — Story not yet developed.
-
-**Subject:** A city planner who approved a building that collapsed.
-**Central question:** Did he approve a building he knew would collapse — or was he the last person who tried to stop it?
-**Known twist:** The corporation ordered the collapse. The evidence is buried in the fragments.
+**Subject:** A corporate therapist flagged after three patients reported the same dream word for word.
+**Central question:** Did he plant the dream — or does he recognise it because he's had it too?
+**Known twist:** The dream is a factory-default Sim memory imprint. All three patients are Sims. So is Oren. He's known for years and has been leaving breadcrumbs for whoever would eventually audit him.
 
 ---
 
-*SUBJECT — STORIES.md // Last updated: Case 01 complete // Cases 02–05 pending*
+*SUBJECT — STORIES.md // Last updated: Cases 01 & 02 complete // Cases 03–05 pending*
