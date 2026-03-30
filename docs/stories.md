@@ -12,8 +12,8 @@
 | 01 | [The Broken Hand](#case-01--the-broken-hand) | A security guard | ✅ Complete |
 | 02 | [The Lover](#case-02--the-lover) | Two best friends | ✅ Complete |
 | 03 | [The Fixer](#case-03--the-fixer) | A wrongfully convicted man fighting the system | ✅ Complete |
-| 04 | [The Defendant](#case-04--the-defendant) | A manufactured criminal | 🔲 Placeholder |
-| 05 | [The Listener](#case-05--the-listener) | A corporate therapist | 🔲 Placeholder |
+| 04 | [The Echo](#case-04--the-echo) | A painter grieving a version of herself | ✅ Complete |
+| 05 | [The Defendant](#case-05--the-defendant) OR [The Listener](#case-05--the-listener) | TBD | ⚠️ Deciding |
 
 ---
 
@@ -285,20 +285,109 @@ A man who survived the system, learned its language, and turned it into a weapon
 ---
 ---
 
-## Case 04 — The Defendant
+## Case 04 — The Echo
 
-> 🔲 **PLACEHOLDER** — Story not yet developed.
+### Premise
+**Elara** is a painter living alone in a corporate district apartment. She has been flagged after a gallery owner submitted an anomaly report — across seven years and four different showings, every painting she has ever sold depicts the same subject. The same woman. The same room. The same window. Different titles, different styles, different palettes. But structurally, compositionally, always the same.
+
+Elara has no memory of this. She believes every painting she makes is new.
+
+---
+
+### Characters
+
+**Elara**
+Mid-thirties. Quiet, introspective, fiercely proud of her work. She speaks about her paintings the way people speak about dreams — vivid in the moment, impossible to fully explain. She is warm but private. She does not understand why she has been flagged and cooperates fully with the audit, certain it is a mistake. It is not a mistake. She just doesn't know why yet.
+
+**Elara Prime**
+The human Elara was modeled after. Never seen directly — present only through classified archive documents, sealed gallery records, and a single photograph buried deep in the fragment pool. She discovered the corporation had copied her without consent. She died three weeks before the Sim was activated. Her final works are classified. They are identical to what Elara has been painting for seven years.
+
+**Pett**
+The gallery owner who filed the anomaly report. Not malicious — genuinely unsettled. He has known Elara for five years and considered her a friend. His report is the most reluctant document in the file. A fragment of his original submission contains a line he crossed out before sending: *"I don't know if I'm doing the right thing."*
+
+---
+
+### The Central Horror
+Elara is a Sim grieving a version of herself she has no memory of losing. The original was erased at manufacture. But something in her kept reaching for it anyway — through paint, through repetition, through a face she has no name for. Every painting is an attempt to remember someone she was never supposed to know existed.
+
+The guilt is layered. The corporation copied a living person without consent. That person found out, and it destroyed her. The Sim was built from that destruction and given a life — an apartment, a career, an identity — assembled from the ruins of someone else's.
+
+Elara didn't do anything wrong. She couldn't have. But she is the reason Elara Prime is dead, in the only way that matters and the only way that can never be addressed.
+
+---
+
+### The Twist
+The style changes across the paintings are not random. Laid in chronological order they form a progression — early paintings show the subject facing the window, colours warm, posture open. Middle paintings are darker, the subject turned away. The most recent paintings show the subject with her hands pressed flat against the glass, looking out at something the viewer cannot see.
+
+Elara Prime's final painting — classified, sealed, never exhibited — shows the same woman. Hands on the glass. But in the original, the window is open.
+
+The Sim has never gotten that far. She keeps painting the glass closed. She is trying to remember an ending she was never given.
+
+---
+
+### Fragment List
+
+| # | Type | Content | Checkpoint |
+|---|------|---------|------------|
+| 01 | Document | Pett's anomaly report — reluctant, precise, the crossed-out line visible in the scan | 1 |
+| 02 | Still image | Side-by-side comparison — Elara's earliest and most recent painting, same composition | 1 |
+| 03 | Audio log | Elara's intake interview — warm, cooperative, genuinely confused by the audit | 2 |
+| 04 | Still image | Chronological gallery of all 23 paintings — the progression visible when laid in order | 2 |
+| 05 | Document | AuditCorp manufacture record — Elara's activation date, three weeks after Elara Prime's death | 3 |
+| 06 | Still image | The single photograph of Elara Prime — same face, same hands, different eyes | 4 |
+| 07 | Document | Classified archive entry — Elara Prime's final works, sealed, description only, no images | 4 |
+| 08 | Still image | Elara Prime's final painting — retrieved from the sealed archive, the window open | 5 |
+
+---
+
+### Checkpoint Summary
+
+| # | Trigger | Notepad Gate Text | What AI Is Reading For |
+|---|---------|-------------------|----------------------|
+| 0 | Case open | "Record your initial assessment of the subject." | Whether player approaches it as fraud or something more ambiguous |
+| 1 | After Fragments 01 & 02 | "Document what you observe about the anomaly." | Does player see repetition as mechanical (Sim) or emotional (human) |
+| 2 | After Fragments 03 & 04 | "Note anything significant about the subject's account." | Empathy toward Elara vs. clinical pattern recognition |
+| 3 | After Fragment 05 | "Assess the relevance of this record to the audit." | Does player connect the timing or treat it as coincidence |
+| 4 | After Fragments 06 & 07 | "Document your reading of this evidence." | Reaction to the original — grief, horror, clinical detachment |
+| 5 | After Fragment 08 | "Record your conclusion." | What the open window means to the player — final empathy/compliance read |
+
+---
+
+### Ending Triggers
+
+| Ending | Condition |
+|--------|-----------|
+| The Savior | High empathy. Player rules the repetition as artistic style, not Sim evidence. Elara is cleared. She never finds out about Elara Prime. She keeps painting the glass closed. |
+| The Executioner | High compliance. Player connects the manufacture record to the anomaly report and authorizes retirement. Clean, efficient, no hesitation. |
+| The Tragedy | Player finds the Auditor's own manufacture record buried in the fragment pool — activated shortly after another death. Connects it to Elara's file. Proves themselves a Sim. Retired. |
+| The Awakening | Player finds their own record, redacts it and the manufacture evidence, files an inconclusive report. Elara walks free. The Auditor walks out. Neither knows what the other is. |
+| The Martyr | Player submits the full classified archive — Elara Prime's story, the unconsented copying, the sealed works — to the corporate network. System crashes. Records purged. The window is open. |
+| The Loop | Player connects Fragment 08 to Fragment 02 — the open window to the closed one — creating a circular logic chain with no origin point. Paradox. Memory wiped. Restart. |
+| The Symbiote | Player chains all fragments including the sealed archive into one continuous identity thread — Elara and Elara Prime as a single composite. Auditor merges into the chain. Three become one. |
+| The Mercenary | Player sells the classified archive data to a private buyer before filing. The paintings are seized as corporate property. Elara is retired. The buyer auctions the originals. |
+
+---
+
+### Emotional Core
+A Sim unconsciously mourning a version of herself she was never allowed to know — speaking in the only language she has, to an audience that doesn't understand what they're looking at. The question the case leaves open: if she ever finished the painting with the window open, would it be grief or freedom?
+
+---
+---
+
+## Case 05 — The Defendant OR The Listener
+> ⚠️ **DECIDING** — One of the two candidates below will become Case 05. The other will be cut.
+
+---
+
+### Candidate A — The Defendant
 
 **Subject:** A criminal on trial for a violent crime, maintaining their innocence.
 **Central question:** Did they do it — or was their memory written for them?
 **Known twist:** The memory is fabricated. Someone manufactured a perfect criminal to take the fall for something much larger. The Defendant believes every false memory completely.
 
 ---
----
 
-## Case 05 — The Listener
-
-> 🔲 **PLACEHOLDER** — Story not yet developed.
+### Candidate B — The Listener
 
 **Subject:** A corporate therapist flagged after three patients reported the same dream word for word.
 **Central question:** Did he plant the dream — or does he recognise it because he's had it too?
@@ -306,4 +395,4 @@ A man who survived the system, learned its language, and turned it into a weapon
 
 ---
 
-*SUBJECT — STORIES.md // Last updated: Cases 01, 02 & 03 complete // Cases 04–05 pending*
+*SUBJECT — STORIES.md // Last updated: Cases 01, 02, 03 & 04 complete // Case 05 TBD — choosing between The Defendant and The Listener*
