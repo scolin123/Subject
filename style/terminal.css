@@ -1,0 +1,469 @@
+/* ============================================================
+   terminal.css — CRT monitor chrome and page-level layout
+   ============================================================ */
+
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--c-void);
+  overflow: hidden;
+  font-family: var(--font-terminal);
+  color: var(--c-phosphor);
+  cursor: default;
+}
+
+/* ── Body layout ──────────────────────────────────────────────────────────── */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Subtle desk surface suggestion at bottom */
+body::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 18%;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.9) 0%, transparent 100%);
+}
+
+/* ── Monitor wrap ─────────────────────────────────────────────────────────── */
+#monitor-wrap {
+  width: 95vw;
+  height: 91vh;
+  max-width: 1600px;
+  position: relative;
+
+  /* Thick retro CRT bezel */
+  background: var(--c-shell);
+  border-radius: 14px;
+
+  /* Chunky physical bezel — more weight at bottom like a real CRT */
+  padding: 22px 28px 42px 28px;
+
+  /* Multi-layer shadow for depth and physicality */
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.8),
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.4),
+    var(--glow-screen);
+
+  /* Faint horizontal moulding lines for bezel texture */
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(255, 255, 255, 0.008) 3px,
+    rgba(255, 255, 255, 0.008) 4px
+  );
+}
+
+/* Top bezel brand strip */
+#monitor-wrap::before {
+  content: 'AUDITCORP';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-terminal);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-widest);
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+/* Bottom bezel indicator lights */
+#monitor-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 76, 76, 0.4)   0%,
+    rgba(255, 76, 76, 0.4)   33%,
+    rgba(255, 179, 71, 0.3)  33%,
+    rgba(255, 179, 71, 0.3)  66%,
+    rgba(76, 255, 145, 0.2)  66%,
+    rgba(76, 255, 145, 0.2)  100%
+  );
+}
+
+/* ── CRT screen ───────────────────────────────────────────────────────────── */
+#crt-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--c-screen);
+  border-radius: 6px;
+
+  /* Deep screen-edge darkness */
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.7),
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 0, 0, 0.9);
+
+  /* Subtle CRT barrel suggestion */
+  transform: perspective(1200px) rotateX(0.4deg);
+}
+
+/* ── Scanlines ────────────────────────────────────────────────────────────── */
+#scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 1px,
+    var(--c-scanline) 1px,
+    var(--c-scanline) 2px
+  );
+  animation: scanroll 12s linear infinite;
+  opacity: 1;
+}
+
+@keyframes scanroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -120px; }
+}
+
+/* ── Vignette ─────────────────────────────────────────────────────────────── */
+#vignette {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 85% 80% at 50% 50%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.45) 75%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+/* ── Terminal shell ───────────────────────────────────────────────────────── */
+#terminal-shell {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: var(--pane-gap);
+  height: calc(100% - var(--status-bar-h));
+  padding: 0;
+  position: relative;
+  z-index: var(--z-pane);
+}
+
+/* ── Panes ────────────────────────────────────────────────────────────────── */
+.pane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--c-surface-low);
+  border-right: 1px solid var(--c-border);
+  transition: box-shadow var(--dur-base);
+}
+
+#viewmaster {
+  flex: 0 0 var(--pane-viewmaster);
+}
+
+#matrix {
+  flex: 1;
+  border-right: 1px solid var(--c-border);
+}
+
+#matrix-body {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+#witness {
+  flex: 0 0 var(--pane-witness);
+  border-right: none;
+}
+
+/* ── Pane header ──────────────────────────────────────────────────────────── */
+.pane-header {
+  height: var(--header-bar-h);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-3);
+  background: var(--c-surface-mid);
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* ── Pane label ───────────────────────────────────────────────────────────── */
+.pane-label {
+  font-family: var(--font-terminal);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  color: var(--c-phosphor-dim);
+  text-transform: uppercase;
+}
+
+/* ── Pane meta / id displays ──────────────────────────────────────────────── */
+.pane-meta,
+#fragment-id-display,
+#matrix-status-display {
+  font-size: var(--text-2xs);
+  color: var(--c-phosphor-mute);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ── Pane body ────────────────────────────────────────────────────────────── */
+.pane-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--screen-padding);
+}
+
+/* ── Pane footer ──────────────────────────────────────────────────────────── */
+.pane-footer {
+  flex-shrink: 0;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  border-top: 1px solid var(--c-border);
+  background: var(--c-surface-mid);
+}
+
+/* ── Pane action button ───────────────────────────────────────────────────── */
+.pane-action {
+  font-family: var(--font-terminal);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--c-border-bright);
+  color: var(--c-phosphor-dim);
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+
+.pane-action:hover {
+  color: var(--c-amber);
+  border-color: var(--c-amber);
+  box-shadow: var(--glow-amber);
+}
+
+/* ── Status bar ───────────────────────────────────────────────────────────── */
+#status-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--status-bar-h);
+  z-index: var(--z-status);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  background: var(--c-surface-mid);
+  border-top: 1px solid var(--c-border);
+  font-family: var(--font-terminal);
+  font-size: var(--text-xs);
+  color: var(--c-phosphor-dim);
+  letter-spacing: var(--tracking-wide);
+}
+
+#status-text {
+  text-shadow: var(--glow-text-subtle);
+}
+
+#status-case-id {
+  color: var(--c-phosphor-mute);
+  font-size: var(--text-2xs);
+}
+
+/* ── Boot overlay ─────────────────────────────────────────────────────────── */
+#boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  background: var(--c-screen);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-20) var(--space-12);
+}
+
+#boot-overlay[hidden] {
+  display: none;
+}
+
+#boot-lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.boot-line {
+  font-family: var(--font-terminal);
+  font-size: var(--text-base);
+  color: var(--c-phosphor);
+  text-shadow: var(--glow-text-subtle);
+  letter-spacing: var(--tracking-wide);
+  opacity: 0;
+}
+
+.boot-line.visible {
+  opacity: 1;
+  transition: opacity var(--dur-base);
+}
+
+#boot-cursor {
+  color: var(--c-phosphor);
+  animation: var(--cursor-blink);
+  font-size: var(--text-base);
+  margin-top: var(--space-3);
+  display: inline-block;
+}
+
+/* ── Overlay panels ───────────────────────────────────────────────────────── */
+#ending-overlay,
+#voss-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(5, 5, 5, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ending-overlay[hidden],
+#voss-overlay[hidden] {
+  display: none;
+}
+
+/* ── Voss memo ────────────────────────────────────────────────────────────── */
+#voss-memo {
+  background: var(--c-surface-mid);
+  border: 1px solid var(--c-border-bright);
+  max-width: 540px;
+  width: 90%;
+  padding: var(--space-8);
+  box-shadow: var(--glow-panel-active);
+}
+
+#voss-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--c-border);
+}
+
+#voss-sender {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  color: var(--c-amber);
+  text-shadow: var(--glow-amber);
+  text-transform: uppercase;
+}
+
+#voss-timestamp {
+  font-size: var(--text-2xs);
+  color: var(--c-phosphor-mute);
+}
+
+#voss-body {
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--c-phosphor);
+  margin-bottom: var(--space-8);
+}
+
+#voss-dismiss {
+  font-family: var(--font-terminal);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--c-phosphor-dim);
+  color: var(--c-phosphor-dim);
+  padding: var(--space-3);
+  cursor: pointer;
+  width: 100%;
+  transition: background var(--dur-base), color var(--dur-base);
+}
+
+#voss-dismiss:hover {
+  background: var(--c-phosphor);
+  color: var(--c-screen);
+}
+
+/* ── Case select screen ───────────────────────────────────────────────────── */
+#case-select {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-boot) - 10); /* 90 — below boot, above everything else */
+  background: var(--c-void);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  padding: var(--space-8);
+}
+
+#case-select[hidden] {
+  display: none;
+}
+
+#case-select-header {
+  text-align: center;
+}
+
+#case-select-wordmark {
+  font-family: var(--font-terminal);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-normal);
+  letter-spacing: var(--tracking-widest);
+  color: var(--c-phosphor);
+  text-shadow: var(--glow-text-strong);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+#case-select-sub {
+  font-family: var(--font-terminal);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  color: var(--c-phosphor-mute);
+}
+
+#polaroid-scatter {
+  position: relative;
+  width: min(740px, 86vw);
+  height: min(480px, 54vh);
+}

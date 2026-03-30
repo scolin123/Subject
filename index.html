@@ -17,9 +17,49 @@
 <body>
 
   <!-- ── Boot overlay ──────────────────────────────────────────────────────── -->
-  <div id="boot-overlay">
+  <div id="boot-overlay" hidden>
     <div id="boot-lines" role="log"></div>
     <span id="boot-cursor" aria-hidden="true"></span>
+  </div>
+
+  <!-- ── Case select ──────────────────────────────────────────────────────── -->
+  <div id="case-select" role="main" aria-label="Case selection">
+    <div id="case-select-header">
+      <h1 id="case-select-wordmark">NULL HYPOTHESIS</h1>
+      <p id="case-select-sub">// SELECT ACTIVE CASE FILE</p>
+    </div>
+    <div id="polaroid-scatter">
+      <button class="polaroid" data-case-id="case-01"
+              style="--p-rot:-12deg;--p-left:1%;--p-top:8%"
+              aria-label="Case 01">
+        <div class="polaroid-photo"></div>
+        <span class="polaroid-label">CASE 01</span>
+      </button>
+      <button class="polaroid" data-case-id="case-02"
+              style="--p-rot:6deg;--p-left:22%;--p-top:1%"
+              aria-label="Case 02">
+        <div class="polaroid-photo"></div>
+        <span class="polaroid-label">CASE 02</span>
+      </button>
+      <button class="polaroid" data-case-id="case-03"
+              style="--p-rot:-4deg;--p-left:44%;--p-top:4%"
+              aria-label="Case 03">
+        <div class="polaroid-photo"></div>
+        <span class="polaroid-label">CASE 03</span>
+      </button>
+      <button class="polaroid" data-case-id="case-04"
+              style="--p-rot:9deg;--p-left:13%;--p-top:47%"
+              aria-label="Case 04">
+        <div class="polaroid-photo"></div>
+        <span class="polaroid-label">CASE 04</span>
+      </button>
+      <button class="polaroid" data-case-id="case-05"
+              style="--p-rot:-7deg;--p-left:52%;--p-top:43%"
+              aria-label="Case 05">
+        <div class="polaroid-photo"></div>
+        <span class="polaroid-label">CASE 05</span>
+      </button>
+    </div>
   </div>
 
   <!-- ── Monitor / CRT wrapper ─────────────────────────────────────────────── -->
