@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* ── Blacks ─────────────────────────────────────────────────────────────── */
+  --c-void:          #050505;
+  --c-shell:         #0a0a0a;
+  --c-screen:        #0d0f0c;
+  --c-surface-low:   #111411;
+  --c-surface-mid:   #171a16;
+  --c-surface-high:  #1e221d;
+  --c-border:        #252b24;
+  --c-border-bright: #2f382e;
+
+  /* ── Phosphor ────────────────────────────────────────────────────────────── */
+  --c-phosphor:       #4cff91;
+  --c-phosphor-dim:   #2aad5f;
+  --c-phosphor-mute:  #1a6e3d;
+  --c-phosphor-glow:  #4cff9133;
+  --c-phosphor-faint: #4cff9108;
+
+  /* ── Amber ───────────────────────────────────────────────────────────────── */
+  --c-amber:     #ffb347;
+  --c-amber-dim: #c47a1a;
+  --c-amber-glow: #ffb34733;
+
+  /* ── Red ─────────────────────────────────────────────────────────────────── */
+  --c-red:     #ff4c4c;
+  --c-red-dim: #a12020;
+  --c-red-glow: #ff4c4c33;
+
+  /* ── Paper ───────────────────────────────────────────────────────────────── */
+  --c-paper:        #e8dfc8;
+  --c-paper-bg:     #1a1510;
+  --c-paper-border: #3d3020;
+
+  /* ── Node states ─────────────────────────────────────────────────────────── */
+  --c-node-unconnected: var(--c-border-bright);
+  --c-node-connected:   var(--c-phosphor);
+  --c-node-flagged:     var(--c-amber);
+  --c-node-paradox:     var(--c-red);
+
+  /* ── Lines ───────────────────────────────────────────────────────────────── */
+  --c-line-valid:   var(--c-phosphor-dim);
+  --c-line-invalid: var(--c-red-dim);
+  --c-line-paradox: var(--c-red);
+
+  /* ── Overlays ────────────────────────────────────────────────────────────── */
+  --c-scanline:    rgba(0, 0, 0, 0.18);
+  --c-vignette:    rgba(0, 0, 0, 0.55);
+  --c-crt-flicker: rgba(76, 255, 145, 0.015);
+
+  /* ── Fonts ───────────────────────────────────────────────────────────────── */
+  --font-terminal: 'Share Tech Mono', monospace;
+  --font-document: 'Special Elite', cursive;
+  --font-notepad:  'Courier Prime', monospace;
+
+  /* ── Size scale ──────────────────────────────────────────────────────────── */
+  --text-2xs:  0.625rem;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  2.75rem;
+
+  /* ── Weight ──────────────────────────────────────────────────────────────── */
+  --weight-normal: 400;
+  --weight-bold:   700;
+
+  /* ── Leading ─────────────────────────────────────────────────────────────── */
+  --leading-tight:  1.2;
+  --leading-normal: 1.6;
+  --leading-loose:  1.9;
+
+  /* ── Tracking ────────────────────────────────────────────────────────────── */
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.05em;
+  --tracking-wider:    0.1em;
+  --tracking-widest:   0.2em;
+
+  /* ── Spacing (4px base unit) ─────────────────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ── Layout ──────────────────────────────────────────────────────────────── */
+  --pane-viewmaster: 26%;
+  --pane-matrix:     46%;
+  --pane-witness:    28%;
+  --pane-gap:        2px;
+  --status-bar-h:    2rem;
+  --header-bar-h:    2.5rem;
+  --screen-padding:  var(--space-3);
+
+  /* ── Radii ───────────────────────────────────────────────────────────────── */
+  --radius-sm:   2px;
+  --radius-base: 3px;
+  --radius-lg:   4px;
+
+  /* ── Glow stack ──────────────────────────────────────────────────────────── */
+  --glow-text-subtle: 0 0 6px var(--c-phosphor-glow);
+  --glow-text-mid:    0 0 12px var(--c-phosphor-glow), 0 0 4px var(--c-phosphor-glow);
+  --glow-text-strong: 0 0 20px var(--c-phosphor),      0 0 8px var(--c-phosphor-glow);
+  --glow-amber:       0 0 12px var(--c-amber-glow),    0 0 4px var(--c-amber-glow);
+  --glow-red:         0 0 12px var(--c-red-glow),      0 0 4px var(--c-red-glow);
+  --glow-panel-active: 0 0 16px var(--c-phosphor-glow), inset 0 0 8px var(--c-phosphor-faint);
+  --glow-panel-idle:   0 0 4px var(--c-phosphor-faint);
+  --glow-screen:       0 0 60px rgba(76, 255, 145, 0.06), 0 0 120px rgba(76, 255, 145, 0.03);
+
+  /* ── Durations ───────────────────────────────────────────────────────────── */
+  --dur-instant: 60ms;
+  --dur-fast:    120ms;
+  --dur-base:    200ms;
+  --dur-slow:    350ms;
+  --dur-crawl:   800ms;
+
+  /* ── Easing ──────────────────────────────────────────────────────────────── */
+  --ease-snap:   cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ease-linear: linear;
+
+  /* ── Cursor blink ────────────────────────────────────────────────────────── */
+  --cursor-blink: blink 1s step-end infinite;
+
+  /* ── Z-index ─────────────────────────────────────────────────────────────── */
+  --z-base:       0;
+  --z-pane:       10;
+  --z-connection: 15;
+  --z-node:       20;
+  --z-overlay:    30;
+  --z-notepad:    40;
+  --z-status:     50;
+  --z-modal:      60;
+  --z-boot:       100;
+
+  /* ── Scrollbar ───────────────────────────────────────────────────────────── */
+  --scrollbar-width:       4px;
+  --scrollbar-track:       var(--c-surface-low);
+  --scrollbar-thumb:       var(--c-border-bright);
+  --scrollbar-thumb-hover: var(--c-phosphor-mute);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* WebKit */
+::-webkit-scrollbar {
+  width:  var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background:    var(--scrollbar-thumb);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::selection {
+  background: var(--c-phosphor);
+  color:      var(--c-screen);
+}

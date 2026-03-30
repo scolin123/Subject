@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUBJECT</title>
+
+  <!-- Google Fonts preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style/token.css" />
+  <link rel="stylesheet" href="style/terminal.css" />
+  <link rel="stylesheet" href="style/components.css" />
+</head>
+<body>
+
+  <!-- ── Boot overlay ──────────────────────────────────────────────────────── -->
+  <div id="boot-overlay">
+    <div id="boot-lines" role="log"></div>
+    <span id="boot-cursor" aria-hidden="true"></span>
+  </div>
+
+  <!-- ── Monitor / CRT wrapper ─────────────────────────────────────────────── -->
+  <div id="monitor-wrap">
+    <div id="crt-screen">
+
+      <div id="scanlines" aria-hidden="true"></div>
+      <div id="vignette"  aria-hidden="true"></div>
+
+      <!-- ── Terminal shell ─────────────────────────────────────────────────── -->
+      <main id="terminal-shell">
+
+        <!-- PANE 1 — Fragment Viewer -->
+        <section id="viewmaster" class="pane">
+          <div class="pane-header">
+            <span class="pane-label">FRAGMENT VIEWER</span>
+            <span id="fragment-id-display"></span>
+          </div>
+          <div id="viewmaster-content" aria-live="polite"></div>
+          <nav id="viewmaster-controls"></nav>
+        </section>
+
+        <!-- PANE 2 — Logic Matrix -->
+        <section id="matrix" class="pane">
+          <div class="pane-header">
+            <span class="pane-label">LOGIC MATRIX</span>
+            <span id="matrix-status-display">AWAITING INPUT</span>
+          </div>
+          <div id="matrix-body">
+            <svg id="matrix-canvas">
+              <defs>
+                <marker id="arrow-valid" markerWidth="8" markerHeight="8"
+                        refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L8,3 z" />
+                </marker>
+                <marker id="arrow-paradox" markerWidth="8" markerHeight="8"
+                        refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L8,3 z" />
+                </marker>
+              </defs>
+              <g id="matrix-board" role="application"></g>
+            </svg>
+            <div id="matrix-footer"></div>
+          </div>
+        </section>
+
+        <!-- PANE 3 — Operator Log (Notepad / Witness) -->
+        <section id="witness" class="pane">
+          <div class="pane-header">
+            <span class="pane-label">OPERATOR LOG</span>
+            <button id="redact-btn" hidden>REDACT</button>
+          </div>
+          <div id="notepad-body">
+            <div id="notepad-entries" role="log"></div>
+            <div id="notepad-input-wrap">
+              <textarea
+                id="notepad-input"
+                class="notepad-field"
+                rows="6"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder="// begin notation"
+              ></textarea>
+            </div>
+          </div>
+          <footer id="notepad-footer">
+            <button id="advance-btn" disabled>SUBMIT LOG &amp; ADVANCE</button>
+          </footer>
+        </section>
+
+      </main><!-- #terminal-shell -->
+
+      <!-- ── Status bar ──────────────────────────────────────────────────────── -->
+      <footer id="status-bar" role="status" aria-live="polite" aria-atomic="true">
+        <span id="status-text">SYSTEM READY.</span>
+        <span id="status-case-id">—</span>
+      </footer>
+
+    </div><!-- #crt-screen -->
+  </div><!-- #monitor-wrap -->
+
+  <!-- ── Ending overlay ────────────────────────────────────────────────────── -->
+  <div id="ending-overlay" hidden aria-modal="true" role="dialog">
+    <div id="ending-content"></div>
+  </div>
+
+  <!-- ── Voss overlay ───────────────────────────────────────────────────────── -->
+  <div id="voss-overlay" hidden aria-modal="true" role="dialog">
+    <div id="voss-memo">
+      <header id="voss-header">
+        <span id="voss-sender">DIRECTOR VOSS // AUDITCORP INTERNAL</span>
+        <span id="voss-timestamp"></span>
+      </header>
+      <div id="voss-body"></div>
+      <button id="voss-dismiss">ACKNOWLEDGE AND CONTINUE</button>
+    </div>
+  </div>
+
+  <!-- ── Scripts — synchronous first, then deferred ────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+  <script defer src="js/gameState.js"></script>
+  <script defer src="js/caseLoader.js"></script>
+  <script defer src="js/anchorSystem.js"></script>
+  <script defer src="js/audioEngine.js"></script>
+  <script defer src="js/viewmaster.js"></script>
+  <script defer src="js/matrix.js"></script>
+  <script defer src="js/notepad.js"></script>
+  <script defer src="js/voss.js"></script>
+  <script defer src="js/endingEngine.js"></script>
+  <script defer src="js/boot.js"></script>
+
+</body>
+</html>
