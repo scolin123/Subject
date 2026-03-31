@@ -1,0 +1,119 @@
+{
+  "id": "case-01",
+  "title": "The Broken Hand",
+  "subject": "VALE-7 // Callum",
+  "status": "active",
+
+  "paradox_pairs": [
+    ["fragment-02", "fragment-03"]
+  ],
+
+  "fragments": [
+    {
+      "id": "fragment-01",
+      "type": "document",
+      "title": "Incident Report — VALE-7",
+      "checkpoint": 1,
+      "conditional": false,
+      "condition_score": null,
+      "anchor_ids": ["anchor-01", "anchor-02"],
+      "content": "AUDITCORP SECURITY DIVISION // INCIDENT REPORT\n\nOperator: VALE-7 (Callum)\nDate: [REDACTED]\nShift: 22:00 — 06:00\n\nI was at my post in the server wing corridor for the duration of my assigned shift. No individuals entered or exited the restricted zone during my watch. The 40-minute gap in surveillance footage is consistent with the scheduled maintenance window logged by the systems team on the same date.\n\nI have nothing further to add.\n\n— VALE-7"
+    },
+    {
+      "id": "fragment-02",
+      "type": "datalog",
+      "title": "Access Card Scan — Server Wing",
+      "checkpoint": 2,
+      "conditional": false,
+      "condition_score": null,
+      "anchor_ids": ["anchor-02", "anchor-03"],
+      "content": "AUDITCORP FACILITY ACCESS LOG\n\nTIMESTAMP: 02:51:08\nLOCATION: SERVER WING EAST — RESTRICTED ENTRY POINT\nCARD ID: VALE-7\nSTATUS: ACCESS GRANTED\n\nNOTE: Entry falls within surveillance gap window.\nNOTE: No exit scan recorded for this card at this location."
+    },
+    {
+      "id": "fragment-03",
+      "type": "still_image",
+      "title": "Medical Bay Corridor — 02:52",
+      "src": "/assets/img/case-01/medical-bay-corridor.jpg",
+      "checkpoint": 3,
+      "conditional": false,
+      "condition_score": null,
+      "anchor_ids": ["anchor-03", "anchor-04"],
+      "content": "Security camera still — medical bay hallway, timestamp 02:52:14. Subject identified as VALE-7 seated on floor outside medical bay door. Subject is stationary. No other individuals visible in frame."
+    },
+    {
+      "id": "fragment-04",
+      "type": "document",
+      "title": "Medical Bay Intake Log",
+      "checkpoint": 4,
+      "conditional": false,
+      "condition_score": null,
+      "anchor_ids": ["anchor-04", "anchor-05"],
+      "content": "AUDITCORP MEDICAL BAY // INTAKE LOG\n\nTIMESTAMP: 02:52:41\nATTENDING: DR. OSEI (on-call)\nNOTES: Unknown individual, female, approx. 30-35 years. Brought in by facility guard following collapse in sub-level corridor. Guard waited outside. Individual was non-responsive on arrival, stabilised within 20 minutes. No ID presented. No corporate employee number on file.\n\nFLAG: Individual entered facility under undocumented status. Referral to compliance pending."
+    },
+    {
+      "id": "fragment-05",
+      "type": "datalog",
+      "title": "Biomechanical Sensor — Elbow Joint",
+      "checkpoint": 5,
+      "conditional": false,
+      "condition_score": null,
+      "anchor_ids": ["anchor-04", "anchor-05"],
+      "content": "AUDITCORP BIOMETRIC MONITORING SYSTEM\n\nTIMESTAMP: 02:52:09\nSUBJECT: VALE-7\nSENSOR: RIGHT ELBOW JOINT — DYNAMIC LOAD EVENT\n\nPEAK ROTATION RECORDED: 127 degrees\nHUMAN ANATOMICAL RANGE (elbow extension): 0 — 145 degrees\nHUMAN ANATOMICAL RANGE (catch configuration): MAX 98 degrees\n\nFLAG: Recorded rotation exceeds anatomical ceiling for detected movement configuration by 29 degrees.\nFLAG: Movement signature inconsistent with standard human biomechanics.\n\nSYSTEM NOTE: Automatic referral generated. Audit classification: SIM IDENTITY REVIEW."
+    },
+    {
+      "id": "fragment-06",
+      "type": "audio",
+      "title": "Voss Memo — Case Briefing",
+      "checkpoint": 0,
+      "conditional": false,
+      "condition_score": null,
+      "anchor_ids": ["anchor-01"],
+      "src": "/assets/audio/case-01/voss-briefing.mp3",
+      "transcript": [
+        "Operator. You have been assigned Case 01.",
+        "The subject is a security guard designated VALE-7.",
+        "A data breach occurred during his assigned shift.",
+        "Surveillance footage covering the relevant window is corrupted.",
+        "Your task is to reconstruct his whereabouts and render a verdict.",
+        "Notation is mandatory at every checkpoint.",
+        "Director Voss will be reviewing your log.",
+        "Proceed."
+      ]
+    },
+    {
+      "id": "fragment-07",
+      "type": "document",
+      "title": "Auditor Calibration File — [CLASSIFIED]",
+      "checkpoint": 5,
+      "conditional": true,
+      "condition_score": { "empathy": 30 },
+      "anchor_ids": ["anchor-05", "anchor-06"],
+      "content": "AUDITCORP OPERATOR DIVISION // CALIBRATION RECORD\n\nOPERATOR ID: [CURRENT SESSION]\nACTIVATION DATE: [REDACTED]\nMODEL DESIGNATION: [REDACTED]\n\nNOTE: This record is not intended to be surfaced during active audit sessions.\nNOTE: If you are reading this, a threshold condition has been met.\n\nYou are not what you think you are.\n\nThis is not an accusation. It is a classification.\n\nProceed with your audit."
+    }
+  ],
+
+  "anchors": [
+    { "id": "anchor-01", "label": "VALE-7 identity", "type": "identity" },
+    { "id": "anchor-02", "label": "Server wing / 02:51", "type": "location-time" },
+    { "id": "anchor-03", "label": "Dual location paradox", "type": "contradiction" },
+    { "id": "anchor-04", "label": "Medical bay / 02:52", "type": "location-time" },
+    { "id": "anchor-05", "label": "Biomechanical anomaly", "type": "biological" },
+    { "id": "anchor-06", "label": "Sim identity classification", "type": "classification" }
+  ],
+
+  "checkpoints": [
+    { "id": 0, "gate_text": "Summarise your initial assessment before reviewing evidence." },
+    { "id": 1, "gate_text": "Document your reading of the subject's statement." },
+    { "id": 2, "gate_text": "Flag any inconsistencies observed." },
+    { "id": 3, "gate_text": "Describe what you observe." },
+    { "id": 4, "gate_text": "Document the relevance of this finding to the subject's alibi." },
+    { "id": 5, "gate_text": "Assess the significance of this finding." }
+  ],
+
+  "voss_sentiment_targets": {
+    "empathy":    "sympathy toward the subject and undocumented individual",
+    "compliance": "alignment with AuditCorp protocol and verdict framing",
+    "sabotage":   "incremented by redaction actions",
+    "detection":  "incremented by redaction and flagged fragment interactions"
+  }
+}
