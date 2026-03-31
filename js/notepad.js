@@ -68,7 +68,7 @@ function _renderEntry(entry, index) {
 // ─── Hidden prompt unlock check ───────────────────────────────────────────────
 function isHiddenUnlocked(checkpointId) {
   const fn = HIDDEN_UNLOCK[checkpointId];
-  if (!fn) return false;
+  if (!fn) return true;
   return fn(gameState.scores);
 }
 
@@ -160,7 +160,6 @@ function _onAdvance() {
   if (cp && cp.prompts && cp.prompts.length) {
     showPromptPanel();
   } else {
-    dispatch('checkpoint:advanced', { checkpoint: gameState.currentCheckpoint });
     _notepadInput.value = '';
     _advanceBtn.disabled = true;
     _updateGateText();

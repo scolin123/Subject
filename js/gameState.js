@@ -142,6 +142,7 @@ function addMatrixConnection(connection) {
     valid: true,
   });
   checkFullChain();
+  checkParadox();
   saveToLocalStorage();
   dispatch('matrix:connectionAdded', { connection });
 }
@@ -151,6 +152,7 @@ function removeMatrixConnection(fromId, toId) {
     c => !(c.from === fromId && c.to === toId)
   );
   checkParadox();
+  checkFullChain();
   saveToLocalStorage();
   dispatch('matrix:connectionRemoved', { fromId, toId });
 }
@@ -248,7 +250,6 @@ function saveToLocalStorage() {
       scores: { ...gameState.scores },
       flags: { ...gameState.flags },
       completedEndings: [...gameState.completedEndings],
-      vossUnlocked: gameState.flags.vossUnlocked,
       notepadEntries: [...gameState.notepadEntries],
       matrixConnections: [...gameState.matrix.connections],
       matrixNodes: [...gameState.matrix.nodes],
@@ -321,6 +322,7 @@ function initNewGame() {
 // ─── Expose on window for cross-module access ─────────────────────────────────
 Object.assign(window, {
   gameState,
+  DEV_RESET_ON_LOAD,
   on,
   off,
   dispatch,

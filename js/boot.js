@@ -1,14 +1,5 @@
 'use strict';
 
-// ─── Case ID → JSON filename map ──────────────────────────────────────────────
-const CASE_FILES = {
-  'case-01': 'cases/broken-hand.json',
-  'case-02': 'cases/the-lover.json',
-  'case-03': 'cases/the-fixer.json',
-  'case-04': 'cases/the-echo.json',
-  'case-05': 'cases/the-listener.json',
-};
-
 // ─── Boot lines ───────────────────────────────────────────────────────────────
 const BOOT_LINES_FULL = [
   'AUDITCORP TERMINAL v4.1.2',
@@ -86,12 +77,40 @@ function wirePolaroids() {
   });
 }
 
+// ─── Status bar ───────────────────────────────────────────────────────────────
+function initStatusBar() {
+  const textEl   = document.getElementById('status-text');
+  const caseIdEl = document.getElementById('status-case-id');
+  if (!textEl) return;
+
+  let _clearTimer = null;
+
+  on('status:queued', ({ message, duration }) => {
+    textEl.textContent = message;
+    clearTimeout(_clearTimer);
+    if (duration > 0) {
+      _clearTimer = setTimeout(() => {
+        textEl.textContent = gameState.currentStatus;
+      }, duration);
+    }
+  });
+
+  // Keep a stable "idle" message so the timer can restore it
+  on('*', (payload, event) => {
+    if (event === 'case:loaded' && payload.caseData) {
+      gameState.currentStatus = `CASE // ${payload.caseData.id.toUpperCase()}`;
+      caseIdEl && (caseIdEl.textContent = payload.caseData.id.toUpperCase());
+    }
+  });
+}
+
 // ─── Entry point ──────────────────────────────────────────────────────────────
 async function boot() {
   // Initialise state — loadSave handles both new and returning
   const hasSave    = Boolean(localStorage.getItem('subject-save'));
   const isReturning = hasSave && !DEV_RESET_ON_LOAD;
 
+  initStatusBar();
   loadSave(); // dispatches 'save:loaded' or 'game:init'
 
   await runBootSequence(isReturning);
