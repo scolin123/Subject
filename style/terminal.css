@@ -319,6 +319,12 @@ body::after {
   display: none;
 }
 
+#boot-overlay.boot-out {
+  opacity: 0;
+  transition: opacity var(--dur-crawl);
+  pointer-events: none;
+}
+
 #boot-lines {
   display: flex;
   flex-direction: column;

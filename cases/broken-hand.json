@@ -102,12 +102,70 @@
   ],
 
   "checkpoints": [
-    { "id": 0, "gate_text": "Summarise your initial assessment before reviewing evidence." },
-    { "id": 1, "gate_text": "Document your reading of the subject's statement." },
-    { "id": 2, "gate_text": "Flag any inconsistencies observed." },
-    { "id": 3, "gate_text": "Describe what you observe." },
-    { "id": 4, "gate_text": "Document the relevance of this finding to the subject's alibi." },
-    { "id": 5, "gate_text": "Assess the significance of this finding." }
+    {
+      "id": 0,
+      "gate_text": "Summarise your initial assessment before reviewing evidence.",
+      "prompts": [
+        { "tier": "E", "text": "Review Callum's personnel file",       "fragment_id": "fragment-01" },
+        { "tier": "C", "text": "Access the breach incident log",        "fragment_id": "fragment-02" },
+        { "tier": "N", "text": "Request full surveillance archive",     "fragment_id": "fragment-01" }
+      ]
+    },
+    {
+      "id": 1,
+      "gate_text": "Document your reading of the subject's statement.",
+      "prompts": [
+        { "tier": "E", "text": "Look for corroborating evidence",          "fragment_id": "fragment-01" },
+        { "tier": "C", "text": "Flag the alibi as inconsistent",           "fragment_id": "fragment-02" },
+        { "tier": "N", "text": "Request Callum's access history",          "fragment_id": "fragment-02" },
+        { "tier": "H", "text": "Cross-reference with facility maps",       "fragment_id": "fragment-03",
+          "unlock": { "empathy": 10 } }
+      ]
+    },
+    {
+      "id": 2,
+      "gate_text": "Flag any inconsistencies observed.",
+      "prompts": [
+        { "tier": "E", "text": "Search for alternative explanations",      "fragment_id": "fragment-02" },
+        { "tier": "C", "text": "Mark access card as primary evidence",     "fragment_id": "fragment-02" },
+        { "tier": "N", "text": "Review corrupted footage metadata",        "fragment_id": "fragment-03" },
+        { "tier": "H", "text": "Query medical bay activity logs",          "fragment_id": "fragment-04",
+          "unlock": { "empathy": 15 } }
+      ]
+    },
+    {
+      "id": 3,
+      "gate_text": "Describe what you observe.",
+      "prompts": [
+        { "tier": "E", "text": "Identify who the guard was waiting for",   "fragment_id": "fragment-04" },
+        { "tier": "C", "text": "Note unauthorised absence from post",      "fragment_id": "fragment-02" },
+        { "tier": "N", "text": "Request timestamp verification",           "fragment_id": "fragment-03" },
+        { "tier": "H", "text": "Pull full medical bay intake records",     "fragment_id": "fragment-04",
+          "unlock": { "empathy": 20 } }
+      ]
+    },
+    {
+      "id": 4,
+      "gate_text": "Document the relevance of this finding to the subject's alibi.",
+      "prompts": [
+        { "tier": "E", "text": "Investigate the undocumented worker's identity",          "fragment_id": "fragment-04" },
+        { "tier": "C", "text": "Flag subject as negligent — abandon post confirmed",      "fragment_id": "fragment-05" },
+        { "tier": "N", "text": "Cross-reference medical log with access card scan",       "fragment_id": "fragment-05" },
+        { "tier": "H", "text": "Request biomechanical sensor data from that corridor",   "fragment_id": "fragment-05",
+          "unlock": { "empathy": 25 } }
+      ]
+    },
+    {
+      "id": 5,
+      "gate_text": "Assess the significance of this finding.",
+      "prompts": [
+        { "tier": "E", "text": "Note as inconclusive — human error possible",  "fragment_id": "fragment-05" },
+        { "tier": "C", "text": "Confirm Sim designation — retire",             "fragment_id": "fragment-05" },
+        { "tier": "N", "text": "File for further review",                      "fragment_id": "fragment-05" },
+        { "tier": "H", "text": "Access Auditor calibration archive",           "fragment_id": "fragment-07",
+          "unlock": { "empathy": 30 } }
+      ]
+    }
   ],
 
   "voss_sentiment_targets": {
