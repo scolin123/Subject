@@ -85,87 +85,100 @@
     </div>
   </div>
 
-  <!-- ── Monitor / CRT wrapper ─────────────────────────────────────────────── -->
-  <div id="monitor-wrap">
-    <div id="crt-screen">
+  <!-- ── Desk environment ──────────────────────────────────────────────────── -->
+  <div id="desk">
 
-      <div id="scanlines" aria-hidden="true"></div>
-      <div id="vignette"  aria-hidden="true"></div>
+    <!-- ── Monitor / CRT wrapper ───────────────────────────────────────────── -->
+    <div id="monitor-wrap">
+      <div id="crt-screen">
 
-      <!-- ── Terminal shell ─────────────────────────────────────────────────── -->
-      <main id="terminal-shell">
+        <div id="scanlines" aria-hidden="true"></div>
+        <div id="vignette"  aria-hidden="true"></div>
 
-        <!-- PANE 1 — Fragment Viewer -->
-        <section id="viewmaster" class="pane">
-          <div class="pane-header">
-            <span class="pane-label">FRAGMENT VIEWER</span>
-            <span id="fragment-id-display"></span>
-          </div>
-          <div id="viewmaster-content" aria-live="polite"></div>
-          <nav id="viewmaster-controls"></nav>
-        </section>
+        <!-- ── Terminal shell ──────────────────────────────────────────────── -->
+        <main id="terminal-shell">
 
-        <!-- PANE 2 — Logic Matrix -->
-        <section id="matrix" class="pane">
-          <div class="pane-header">
-            <span class="pane-label">LOGIC MATRIX</span>
-            <span id="matrix-status-display">AWAITING INPUT</span>
-          </div>
-          <div id="matrix-body">
-            <svg id="matrix-canvas">
-              <defs>
-                <marker id="arrow-valid" markerWidth="8" markerHeight="8"
-                        refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L0,6 L8,3 z" />
-                </marker>
-                <marker id="arrow-paradox" markerWidth="8" markerHeight="8"
-                        refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-                  <path d="M0,0 L0,6 L8,3 z" />
-                </marker>
-              </defs>
-              <g id="matrix-board" role="application"></g>
-            </svg>
-            <div id="matrix-footer"></div>
-          </div>
-        </section>
-
-        <!-- PANE 3 — Operator Log (Notepad / Witness) -->
-        <section id="witness" class="pane">
-          <div class="pane-header">
-            <span class="pane-label">OPERATOR LOG</span>
-            <button id="redact-btn" hidden>REDACT</button>
-          </div>
-          <div id="notepad-body">
-            <div id="notepad-entries" role="log"></div>
-            <div id="notepad-input-wrap">
-              <textarea
-                id="notepad-input"
-                class="notepad-field"
-                rows="6"
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="false"
-                placeholder="// begin notation"
-              ></textarea>
+          <!-- PANE 1 — Fragment Viewer -->
+          <section id="viewmaster" class="pane">
+            <div class="pane-header">
+              <span class="pane-label">FRAGMENT VIEWER</span>
+              <span id="fragment-id-display"></span>
             </div>
+            <div id="viewmaster-content" aria-live="polite"></div>
+            <nav id="viewmaster-controls"></nav>
+          </section>
+
+          <!-- PANE 2 — Logic Matrix -->
+          <section id="matrix" class="pane">
+            <div class="pane-header">
+              <span class="pane-label">LOGIC MATRIX</span>
+              <span id="matrix-status-display">AWAITING INPUT</span>
+            </div>
+            <div id="matrix-body">
+              <svg id="matrix-canvas">
+                <defs>
+                  <marker id="arrow-valid" markerWidth="8" markerHeight="8"
+                          refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" />
+                  </marker>
+                  <marker id="arrow-paradox" markerWidth="8" markerHeight="8"
+                          refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L8,3 z" />
+                  </marker>
+                </defs>
+                <g id="matrix-board" role="application"></g>
+              </svg>
+              <div id="matrix-footer"></div>
+            </div>
+          </section>
+
+        </main><!-- #terminal-shell -->
+
+        <!-- ── Status bar ────────────────────────────────────────────────────── -->
+        <footer id="status-bar" role="status" aria-live="polite" aria-atomic="true">
+          <span id="status-text">SYSTEM READY.</span>
+          <span id="status-case-id">—</span>
+        </footer>
+
+      </div><!-- #crt-screen -->
+    </div><!-- #monitor-wrap -->
+
+    <!-- ── Desk notepad prop ────────────────────────────────────────────────── -->
+    <button id="desk-notepad-btn" aria-label="Open operator log">
+      <span class="desk-notepad-label">OPERATOR LOG</span>
+    </button>
+
+    <!-- ── Notepad modal ────────────────────────────────────────────────────── -->
+    <div id="notepad-modal" hidden aria-modal="true" role="dialog">
+      <div id="notepad-modal-inner">
+        <div id="notepad-modal-header">
+          <span>OPERATOR LOG</span>
+          <button id="notepad-modal-close" aria-label="Close notepad">×</button>
+        </div>
+        <div id="notepad-body">
+          <div id="notepad-entries" role="log"></div>
+          <div id="notepad-input-wrap">
+            <textarea
+              id="notepad-input"
+              class="notepad-field"
+              rows="6"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="// begin notation"
+            ></textarea>
           </div>
-          <footer id="notepad-footer">
-            <button id="advance-btn" disabled>SUBMIT LOG &amp; ADVANCE</button>
-            <div id="prompt-panel" hidden role="group" aria-label="Select next action"></div>
-          </footer>
-        </section>
+        </div>
+        <footer id="notepad-footer">
+          <button id="redact-btn" hidden>REDACT</button>
+          <button id="advance-btn" disabled>SUBMIT LOG &amp; ADVANCE</button>
+          <div id="prompt-panel" hidden role="group" aria-label="Select next action"></div>
+        </footer>
+      </div>
+    </div><!-- #notepad-modal -->
 
-      </main><!-- #terminal-shell -->
-
-      <!-- ── Status bar ──────────────────────────────────────────────────────── -->
-      <footer id="status-bar" role="status" aria-live="polite" aria-atomic="true">
-        <span id="status-text">SYSTEM READY.</span>
-        <span id="status-case-id">—</span>
-      </footer>
-
-    </div><!-- #crt-screen -->
-  </div><!-- #monitor-wrap -->
+  </div><!-- #desk -->
 
   <!-- ── Ending overlay ────────────────────────────────────────────────────── -->
   <div id="ending-overlay" hidden aria-modal="true" role="dialog">

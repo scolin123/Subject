@@ -94,9 +94,8 @@
   --space-20: 5rem;
 
   /* ── Layout ──────────────────────────────────────────────────────────────── */
-  --pane-viewmaster: 26%;
+  --pane-viewmaster: 30%;
   --pane-matrix:     46%;
-  --pane-witness:    28%;
   --pane-gap:        2px;
   --status-bar-h:    2rem;
   --header-bar-h:    2.5rem;

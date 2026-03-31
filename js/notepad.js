@@ -23,6 +23,8 @@ let _advanceBtn   = null;
 let _notepadInput = null;
 let _promptPanel  = null;
 let _entriesEl    = null;
+let _modalEl      = null;
+let _propBtn      = null;
 
 // ─── Current case checkpoint data ─────────────────────────────────────────────
 // Set by caseLoader via notepad.setCaseData(caseData) once a case is loaded.
@@ -172,12 +174,26 @@ function _restoreEntries() {
   gameState.notepadEntries.forEach((entry, i) => _renderEntry(entry, i));
 }
 
+// ─── Modal open / close ───────────────────────────────────────────────────────
+function openNotepad() {
+  if (!_modalEl) return;
+  _modalEl.removeAttribute('hidden');
+  _notepadInput && _notepadInput.focus();
+}
+
+function closeNotepad() {
+  if (!_modalEl) return;
+  _modalEl.setAttribute('hidden', '');
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 function initNotepad() {
   _advanceBtn   = document.getElementById('advance-btn');
   _notepadInput = document.getElementById('notepad-input');
   _promptPanel  = document.getElementById('prompt-panel');
   _entriesEl    = document.getElementById('notepad-entries');
+  _modalEl      = document.getElementById('notepad-modal');
+  _propBtn      = document.getElementById('desk-notepad-btn');
 
   if (!_advanceBtn || !_notepadInput || !_promptPanel || !_entriesEl) {
     console.warn('[notepad] Missing DOM elements — notepad not initialised.');
@@ -186,6 +202,23 @@ function initNotepad() {
 
   _notepadInput.addEventListener('input', _onInput);
   _advanceBtn.addEventListener('click', _onAdvance);
+
+  // Wire desk prop
+  if (_propBtn)  _propBtn.addEventListener('click', openNotepad);
+
+  // Wire close button and backdrop click
+  if (_modalEl) {
+    document.getElementById('notepad-modal-close')
+      ?.addEventListener('click', closeNotepad);
+    _modalEl.addEventListener('click', e => {
+      if (e.target === _modalEl) closeNotepad();
+    });
+  }
+
+  // Escape key closes the modal
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && _modalEl && !_modalEl.hidden) closeNotepad();
+  });
 
   // Restore entries if resuming from save
   on('save:loaded', _restoreEntries);
@@ -201,6 +234,8 @@ Object.assign(window, {
   isHiddenUnlocked,
   showPromptPanel,
   hidePromptPanel,
+  openNotepad,
+  closeNotepad,
 });
 
 document.addEventListener('DOMContentLoaded', initNotepad);

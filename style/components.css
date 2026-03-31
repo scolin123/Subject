@@ -191,24 +191,48 @@
 }
 
 .node-connectors {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--space-2);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .connector-point {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--c-border-bright);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 28px;
+  border-radius: 3px;
+  background: var(--c-surface-high);
   border: 1px solid var(--c-phosphor-mute);
   cursor: crosshair;
+  pointer-events: all;
+  transition: background var(--dur-fast), border-color var(--dur-fast), box-shadow var(--dur-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connector-point[data-side="left"]  { left:  -7px; }
+.connector-point[data-side="right"] { right: -7px; }
+
+.connector-point::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--c-phosphor-mute);
   transition: background var(--dur-fast);
 }
 
 .connector-point:hover {
-  background: var(--c-phosphor);
+  background: var(--c-surface-high);
+  border-color: var(--c-phosphor);
   box-shadow: var(--glow-text-subtle);
+}
+
+.connector-point:hover::after {
+  background: var(--c-phosphor);
 }
 
 /* ── Node color states ────────────────────────────────────────────────────── */
@@ -274,8 +298,11 @@
 #matrix-canvas {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: var(--z-connection);
   pointer-events: none;
+  overflow: visible;
 }
 
 #matrix-canvas line,
@@ -627,4 +654,208 @@ body.detection-9 #redact-btn {
   margin-top: var(--space-2);
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-tight);
+}
+
+/* ── Notepad modal backdrop ───────────────────────────────────────────────── */
+#notepad-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#notepad-modal[hidden] {
+  display: none;
+}
+
+/* ── Notepad modal inner (paper aesthetic) ────────────────────────────────── */
+#notepad-modal-inner {
+  width: min(560px, 90vw);
+  height: min(680px, 85vh);
+  background: var(--c-paper);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 4px 4px 0 #3d2e12;
+  /* Ruled lines offset below the header */
+  background-image: repeating-linear-gradient(
+    transparent 0px,
+    transparent 27px,
+    rgba(0, 0, 0, 0.08) 27px,
+    rgba(0, 0, 0, 0.08) 28px
+  );
+  background-size: 100% 28px;
+  background-position: 0 44px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Red margin line */
+#notepad-modal-inner::before {
+  content: '';
+  position: absolute;
+  left: 44px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(200, 80, 80, 0.3);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Modal header ─────────────────────────────────────────────────────────── */
+#notepad-modal-header {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  background: rgba(0, 0, 0, 0.06);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+  font-family: var(--font-terminal);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+#notepad-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+#notepad-modal-close:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Modal body — dark ink on paper ──────────────────────────────────────── */
+#notepad-modal #notepad-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-3) var(--space-4) var(--space-3) 52px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  z-index: 2;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+#notepad-modal .notepad-field {
+  background: transparent;
+  border: none;
+  color: #2a1f0e;
+  font-family: var(--font-notepad);
+  font-size: var(--text-sm);
+  line-height: 28px;
+  caret-color: #2a1f0e;
+  resize: none;
+  width: 100%;
+  outline: none;
+}
+
+#notepad-modal .notepad-field::placeholder {
+  color: rgba(42, 31, 14, 0.35);
+  font-style: italic;
+}
+
+#notepad-modal #notepad-entries {
+  color: #2a1f0e;
+}
+
+#notepad-modal .notepad-entry {
+  border-left-color: rgba(42, 31, 14, 0.25);
+  color: #2a1f0e;
+}
+
+#notepad-modal .entry-meta {
+  color: rgba(42, 31, 14, 0.45);
+}
+
+#notepad-modal .notepad-entry p {
+  font-family: var(--font-notepad);
+  color: #2a1f0e;
+}
+
+/* ── Modal footer ─────────────────────────────────────────────────────────── */
+#notepad-modal #notepad-footer {
+  background: rgba(0, 0, 0, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  z-index: 2;
+}
+
+#notepad-modal #advance-btn {
+  background: transparent;
+  border-color: rgba(42, 31, 14, 0.4);
+  color: rgba(42, 31, 14, 0.8);
+}
+
+#notepad-modal #advance-btn:not(:disabled):hover {
+  background: #2a1f0e;
+  color: var(--c-paper);
+  border-color: #2a1f0e;
+  box-shadow: none;
+}
+
+#notepad-modal #advance-btn:disabled {
+  border-color: rgba(42, 31, 14, 0.15);
+  color: rgba(42, 31, 14, 0.3);
+}
+
+#notepad-modal #redact-btn {
+  border-color: rgba(42, 31, 14, 0.3);
+  color: rgba(42, 31, 14, 0.6);
+}
+
+#notepad-modal #redact-btn:hover {
+  color: #8b3a1a;
+  border-color: #8b3a1a;
+  box-shadow: none;
+}
+
+#notepad-modal .prompt-option {
+  border-color: rgba(42, 31, 14, 0.3);
+  color: rgba(42, 31, 14, 0.8);
+}
+
+#notepad-modal .prompt-option::before {
+  color: rgba(42, 31, 14, 0.4);
+}
+
+#notepad-modal .prompt-option:hover {
+  background: #2a1f0e;
+  color: var(--c-paper);
+  border-color: #2a1f0e;
+  box-shadow: none;
+}
+
+#notepad-modal .prompt-option:hover::before {
+  color: var(--c-paper);
+}
+
+#notepad-modal .prompt-option[data-tier="H"] {
+  border-color: rgba(139, 88, 20, 0.5);
+  color: #8b5214;
+}
+
+#notepad-modal .prompt-option[data-tier="H"]:hover {
+  background: #8b5214;
+  color: var(--c-paper);
+  border-color: #8b5214;
 }

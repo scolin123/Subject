@@ -72,7 +72,7 @@ function wirePolaroids() {
 
       caseSelect.setAttribute('hidden', '');
       pushStatus('LOADING CASE FILE...');
-      dispatch('case:selected', { caseId, file: CASE_FILES[caseId] ?? null });
+      dispatch('case:selected', { caseId });
     });
   });
 }
