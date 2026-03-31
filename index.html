@@ -22,15 +22,28 @@
     <span id="boot-cursor" aria-hidden="true"></span>
   </div>
 
+  <!-- ── Film grain SVG filter ─────────────────────────────────────────────── -->
+  <svg style="position:fixed;width:0;height:0" aria-hidden="true">
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+
   <!-- ── Case select ──────────────────────────────────────────────────────── -->
   <div id="case-select" role="main" aria-label="Case selection">
     <div id="case-select-header">
       <h1 id="case-select-wordmark">NULL HYPOTHESIS</h1>
+      <hr id="case-select-rule" aria-hidden="true" />
       <p id="case-select-sub">// SELECT ACTIVE CASE FILE</p>
+    </div>
+    <div id="case-select-footer" aria-hidden="true">
+      <span>OPERATOR: [REDACTED]</span>
+      <span>SESSION // ACTIVE</span>
     </div>
     <div id="polaroid-scatter">
       <button class="polaroid" data-case-id="case-01"
-              style="--p-rot:-12deg;--p-left:4%;--p-top:6%"
+              style="--p-rot:-12deg;--p-left:4%;--p-top:10%"
               aria-label="Case 01">
         <div class="polaroid-photo">
           <img src="assets/img/cover-art/broken-hand-cover.jpg" alt="Broken Hand" />
@@ -38,7 +51,7 @@
         <span class="polaroid-label">CASE 01</span>
       </button>
       <button class="polaroid" data-case-id="case-02"
-              style="--p-rot:6deg;--p-left:27%;--p-top:1%"
+              style="--p-rot:7deg;--p-left:30%;--p-top:5%"
               aria-label="Case 02">
         <div class="polaroid-photo">
           <img src="assets/img/cover-art/the-lover-cover.jpg" alt="The Lover" />
@@ -46,7 +59,7 @@
         <span class="polaroid-label">CASE 02</span>
       </button>
       <button class="polaroid" data-case-id="case-03"
-              style="--p-rot:-4deg;--p-left:52%;--p-top:3%"
+              style="--p-rot:-5deg;--p-left:58%;--p-top:7%"
               aria-label="Case 03">
         <div class="polaroid-photo">
           <img src="assets/img/cover-art/the-fixer-cover.jpg" alt="The Fixer" />
@@ -54,7 +67,7 @@
         <span class="polaroid-label">CASE 03</span>
       </button>
       <button class="polaroid" data-case-id="case-04"
-              style="--p-rot:9deg;--p-left:16%;--p-top:48%"
+              style="--p-rot:10deg;--p-left:10%;--p-top:62%"
               aria-label="Case 04">
         <div class="polaroid-photo">
           <img src="assets/img/cover-art/the-echo-cover.jpg" alt="The Echo" />
@@ -62,7 +75,7 @@
         <span class="polaroid-label">CASE 04</span>
       </button>
       <button class="polaroid" data-case-id="case-05"
-              style="--p-rot:-7deg;--p-left:45%;--p-top:54%"
+              style="--p-rot:-8deg;--p-left:43%;--p-top:55%"
               aria-label="Case 05">
         <div class="polaroid-photo">
           <img src="assets/img/cover-art/the-listener-cover.jpg" alt="The Listener" />

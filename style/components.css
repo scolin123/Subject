@@ -467,8 +467,9 @@ body.detection-9 #redact-btn {
   position: absolute;
   left: var(--p-left);
   top: var(--p-top);
+  /* Pivot from top-center — where the pin is */
   transform: rotate(var(--p-rot));
-  transform-origin: center bottom;
+  transform-origin: center top;
 
   /* Polaroid frame: cream stock, thick bottom */
   background: var(--c-paper);
@@ -477,26 +478,44 @@ body.detection-9 #redact-btn {
 
   border: none;
   cursor: pointer;
+  z-index: 1;
 
+  /* Pinned shadow: tight at top (close to board), diffuse below (hangs away) */
   box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.55),
-    0 2px 6px  rgba(0, 0, 0, 0.35);
+    1px 2px 4px  rgba(0, 0, 0, 0.45),
+    0 10px 20px  rgba(0, 0, 0, 0.4);
 
   transition:
-    transform  var(--dur-slow) var(--ease-snap),
-    box-shadow var(--dur-slow) var(--ease-snap),
-    filter     var(--dur-base) var(--ease-out);
+    transform  0.2s ease,
+    box-shadow 0.2s ease,
+    filter     0.2s ease;
+}
 
-  z-index: 1;
+/* Thumbtack pseudo-element */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e0b86a, #8b6310);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .polaroid:hover,
 .polaroid:focus-visible {
-  transform: rotate(0deg) scale(1.08) translateY(-10px);
+  transform: rotate(calc(var(--p-rot) * 0.2)) translateY(8px) scale(1.12);
   box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.75),
-    0 8px  16px rgba(0, 0, 0, 0.5),
-    0 0 0 1px var(--c-phosphor-mute);
+    3px 6px 12px  rgba(0, 0, 0, 0.55),
+    0 28px 56px   rgba(0, 0, 0, 0.65);
+  filter: brightness(1.18) contrast(1.05);
   z-index: 10;
   outline: none;
 }
