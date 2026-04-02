@@ -34,9 +34,10 @@ function _onCaseLoaded({ fragments }) {
       _onParadoxTriggered({ paradoxPairs: gameState.matrix.paradoxPairs });
     }
   } else {
-    // Fresh path — stagger nodes in grid
-    const total = fragments.length;
-    fragments.forEach((frag, i) => {
+    // Fresh path — stagger nodes in grid; checkpoint 0 (Voss Memo) always first
+    const sorted = [...fragments].sort((a, b) => (a.checkpoint === 0 ? -1 : b.checkpoint === 0 ? 1 : 0));
+    const total = sorted.length;
+    sorted.forEach((frag, i) => {
       const nodeId = `node-${frag.id}`;
       const pos    = _gridPosition(i, total);
       addMatrixNode({ id: nodeId, fragmentId: frag.id, position: pos });
@@ -404,6 +405,12 @@ function initMatrix() {
   on('matrix:connectionAdded',    _onConnectionAdded);
   on('matrix:connectionRemoved',  _onConnectionRemoved);
   on('fragment:redactionToggled', _onRedactionToggled);
+
+  on('fragment:load', ({ fragment }) => {
+    _bodyEl.querySelectorAll('.matrix-node').forEach(el => el.classList.remove('active'));
+    const activeEl = _bodyEl.querySelector(`.matrix-node[data-fragment-id="${fragment.id}"]`);
+    if (activeEl) activeEl.classList.add('active');
+  });
 
   _wireDraftListeners();
   _wireInteract();

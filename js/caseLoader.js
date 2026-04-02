@@ -69,6 +69,12 @@ async function loadCase(caseId) {
   // Notify all other modules
   dispatch('case:loaded', { caseData: caseJson, fragments: gameState.loadedFragments });
   pushStatus(`CASE LOADED // ${caseJson.title.toUpperCase()}`);
+
+  // Trigger Voss Memo (checkpoint 0 briefing fragment) as the first interaction
+  const memoFragment = gameState.loadedFragments.find(f => f.checkpoint === 0);
+  if (memoFragment) {
+    dispatch('voss:memo:trigger', { fragment: memoFragment });
+  }
 }
 
 // ─── Restore case on save:loaded ──────────────────────────────────────────────

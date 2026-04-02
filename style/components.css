@@ -255,6 +255,16 @@
   color: var(--c-red);
 }
 
+/* ── Node active (currently viewed in Fragment Viewer) ───────────────────── */
+.matrix-node.active {
+  outline: 1px solid var(--c-phosphor);
+  box-shadow: var(--glow-panel-active), 0 0 0 2px var(--c-phosphor-glow);
+}
+
+.matrix-node.active .node-title {
+  color: var(--c-phosphor);
+}
+
 /* ── Paradox label ────────────────────────────────────────────────────────── */
 .node-paradox-label {
   display: block;

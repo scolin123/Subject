@@ -1,7 +1,7 @@
 'use strict';
 
 // ─── Dev flags ────────────────────────────────────────────────────────────────
-const DEV_RESET_ON_LOAD = false;
+const DEV_RESET_ON_LOAD = true;
 const DEV_VERBOSE = false;
 
 // ─── Event bus ────────────────────────────────────────────────────────────────
