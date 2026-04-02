@@ -166,6 +166,12 @@ body {
   flex: 0 0 var(--pane-viewmaster);
 }
 
+#viewmaster-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 #matrix {
   flex: 1;
   border-right: none;
@@ -177,42 +183,63 @@ body {
   overflow: hidden;
 }
 
-/* ── Desk notepad prop ────────────────────────────────────────────────────── */
+/* ── Notepad hint pulse ───────────────────────────────────────────────────── */
+@keyframes notepad-hint {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 179, 71, 0.12), 0 0 24px rgba(255, 179, 71, 0.05); }
+  50%       { box-shadow: 0 0 20px rgba(255, 179, 71, 0.30), 0 0 44px rgba(255, 179, 71, 0.12); }
+}
+
+/* ── Desk notepad prop — transparent hit-area over spiral notepad in workDesk.png ── */
 #desk-notepad-btn {
+  /* Tuning vars — shift these to align the glow with the physical notepad */
+  --notepad-right:  0%;
+  --notepad-bottom: 0%;
+  --notepad-width:  14%;
+  --notepad-height: 28%;
+
   position: absolute;
-  bottom: 4%;
-  right: 3%;
-  width: 120px;
-  height: 150px;
-  background: #1c1208;
-  background-image: repeating-linear-gradient(
-    transparent 0px, transparent 10px,
-    rgba(255, 255, 255, 0.04) 10px, rgba(255, 255, 255, 0.04) 11px
-  );
-  border: 1px solid #3d2e12;
-  border-radius: 2px;
+  right:   var(--notepad-right);
+  bottom:  var(--notepad-bottom);
+  width:   var(--notepad-width);
+  height:  var(--notepad-height);
+
+  background: transparent;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 10px;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.3);
-  transition: transform 150ms ease, box-shadow 150ms ease;
   z-index: var(--z-notepad);
+
+  animation: notepad-hint 3s ease-in-out infinite;
+  transition: box-shadow 200ms ease;
 }
 
 #desk-notepad-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.7);
+  animation: none;
+  box-shadow:
+    0 0 28px rgba(255, 179, 71, 0.55),
+    0 0 56px rgba(255, 179, 71, 0.22);
 }
 
-.desk-notepad-label {
+/* Label revealed on hover */
+#desk-notepad-btn::after {
+  content: 'OPEN OPERATOR LOG';
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
   font-family: var(--font-terminal);
-  font-size: 0.5rem;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.2);
-  text-transform: uppercase;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-widest);
+  color: var(--c-amber);
+  text-shadow: var(--glow-amber);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+#desk-notepad-btn:hover::after {
+  opacity: 1;
 }
 
 /* ── Pane header ──────────────────────────────────────────────────────────── */
