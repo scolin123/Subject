@@ -21,97 +21,40 @@ body {
 
 /* ── Desk ─────────────────────────────────────────────────────────────────── */
 #desk {
+  /* Screen overlay tuning — adjust these to fit the monitor in workDesk.png */
+  --desk-screen-top:    3%;
+  --desk-screen-left:   8.5%;
+  --desk-screen-width:  83%;
+  --desk-screen-height: 76%;
+
   width: 100vw;
   height: 100vh;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 8vh; /* shift monitor up — more desk visible below */
-  background-color: #2a1a08;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 60px,
-      rgba(255, 200, 100, 0.025) 60px,
-      rgba(255, 200, 100, 0.025) 61px
-    ),
-    repeating-linear-gradient(
-      180deg,
-      transparent 0px,
-      transparent 8px,
-      rgba(0, 0, 0, 0.12) 8px,
-      rgba(0, 0, 0, 0.12) 9px
-    );
-  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.6);
+  background-color: #0a0a0a;
+  background-image: url('../assets/img/ui/workDesk.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* ── Monitor wrap ─────────────────────────────────────────────────────────── */
+/* ── Monitor wrap — transparent overlay positioned over the screen in workDesk.png ── */
 #monitor-wrap {
-  width: 78vw;
-  height: 78vh;
-  max-width: 1400px;
-  position: relative;
-
-  /* Thick retro CRT bezel */
-  background: var(--c-shell);
-  border-radius: 14px;
-
-  /* Chunky physical bezel — more weight at bottom like a real CRT */
-  padding: 22px 28px 42px 28px;
-
-  /* Multi-layer shadow for depth and physicality */
-  box-shadow:
-    0 40px 80px rgba(0, 0, 0, 0.8),
-    0 20px 40px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 -8px 16px rgba(0, 0, 0, 0.4),
-    var(--glow-screen);
-
-  /* Faint horizontal moulding lines for bezel texture */
-  background-image: repeating-linear-gradient(
-    180deg,
-    transparent 0px,
-    transparent 3px,
-    rgba(255, 255, 255, 0.008) 3px,
-    rgba(255, 255, 255, 0.008) 4px
-  );
-}
-
-/* Top bezel brand strip */
-#monitor-wrap::before {
-  content: 'AUDITCORP';
   position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-terminal);
-  font-size: var(--text-2xs);
-  letter-spacing: var(--tracking-widest);
-  color: rgba(255, 255, 255, 0.06);
-  pointer-events: none;
+  top:    var(--desk-screen-top);
+  left:   var(--desk-screen-left);
+  width:  var(--desk-screen-width);
+  height: var(--desk-screen-height);
+  max-width: none;
+  background: none;
+  background-image: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
 }
 
-/* Bottom bezel indicator lights */
+#monitor-wrap::before,
 #monitor-wrap::after {
-  content: '';
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 76, 76, 0.4)   0%,
-    rgba(255, 76, 76, 0.4)   33%,
-    rgba(255, 179, 71, 0.3)  33%,
-    rgba(255, 179, 71, 0.3)  66%,
-    rgba(76, 255, 145, 0.2)  66%,
-    rgba(76, 255, 145, 0.2)  100%
-  );
+  display: none;
 }
 
 /* ── CRT screen ───────────────────────────────────────────────────────────── */
