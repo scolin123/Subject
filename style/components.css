@@ -265,6 +265,31 @@
   color: var(--c-phosphor);
 }
 
+/* ── Node click flash feedback ───────────────────────────────────────────── */
+@keyframes node-flash-red {
+  0%   { border-color: var(--c-red);   box-shadow: 0 0 18px var(--c-red), 0 0 6px var(--c-red), inset 0 0 10px rgba(255,40,40,0.15); opacity: 1; }
+  40%  { border-color: var(--c-red);   box-shadow: 0 0 18px var(--c-red), 0 0 6px var(--c-red), inset 0 0 10px rgba(255,40,40,0.15); opacity: 1; }
+  60%  { border-color: inherit;        box-shadow: inherit; opacity: 0.5; }
+  80%  { border-color: var(--c-red);   box-shadow: 0 0 12px var(--c-red), inset 0 0 6px rgba(255,40,40,0.1); opacity: 1; }
+  100% { border-color: inherit;        box-shadow: inherit; opacity: 1; }
+}
+
+@keyframes node-flash-orange {
+  0%   { border-color: var(--c-amber); box-shadow: 0 0 18px var(--c-amber), 0 0 6px var(--c-amber), inset 0 0 10px rgba(255,160,0,0.15); opacity: 1; }
+  40%  { border-color: var(--c-amber); box-shadow: 0 0 18px var(--c-amber), 0 0 6px var(--c-amber), inset 0 0 10px rgba(255,160,0,0.15); opacity: 1; }
+  60%  { border-color: inherit;        box-shadow: inherit; opacity: 0.5; }
+  80%  { border-color: var(--c-amber); box-shadow: 0 0 12px var(--c-amber), inset 0 0 6px rgba(255,160,0,0.1); opacity: 1; }
+  100% { border-color: inherit;        box-shadow: inherit; opacity: 1; }
+}
+
+.matrix-node.node-flash-red {
+  animation: node-flash-red 0.7s ease forwards;
+}
+
+.matrix-node.node-flash-orange {
+  animation: node-flash-orange 0.7s ease forwards;
+}
+
 /* ── Node target (valid connection destination from current node) ────────── */
 .matrix-node.node-target {
   border-color: var(--c-phosphor-dim);
@@ -276,7 +301,7 @@
 }
 
 /* ── Matrix locked (awaiting notepad entry + prompt choice) ─────────────── */
-#matrix-body.matrix-locked .matrix-node:not(.active) {
+#matrix-body.matrix-locked .matrix-node:not(.active):not(.node-target):not(.visited) {
   opacity: 0.3;
   cursor: not-allowed;
 }
@@ -284,6 +309,12 @@
 #matrix-body.matrix-locked .connector-point {
   opacity: 0.1;
   cursor: not-allowed;
+}
+
+/* Active node's connectors stay visible so the player can initiate drags */
+#matrix-body.matrix-locked .matrix-node.active .connector-point {
+  opacity: 1;
+  cursor: crosshair;
 }
 
 /* ── Paradox label ────────────────────────────────────────────────────────── */

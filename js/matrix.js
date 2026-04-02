@@ -77,22 +77,25 @@ function _gridPosition(index, total) {
   };
 }
 
+// ─── Node flash feedback ──────────────────────────────────────────────────────
+function _flashNode(el, color) {
+  const cls = color === 'red' ? 'node-flash-red' : 'node-flash-orange';
+  el.classList.remove(cls); // reset if already mid-flash
+  void el.offsetWidth;      // force reflow so re-adding triggers the animation
+  el.classList.add(cls);
+  el.addEventListener('animationend', () => el.classList.remove(cls), { once: true });
+}
+
 // ─── Target highlighting ──────────────────────────────────────────────────────
 function _clearTargetHighlights() {
   _bodyEl.querySelectorAll('.matrix-node.node-target').forEach(el => el.classList.remove('node-target'));
 }
 
-function _highlightTargets(sourceFragId) {
+function _highlightTargets(fragmentIds) {
   _clearTargetHighlights();
-  if (!sourceFragId) return;
-  const sourceFrag = gameState.loadedFragments.find(f => f.id === sourceFragId);
-  if (!sourceFrag) return;
-  gameState.loadedFragments.forEach(frag => {
-    if (frag.id === sourceFragId) return;
-    if (canConnect(sourceFrag, frag)) {
-      const nodeEl = _bodyEl.querySelector(`.matrix-node[data-fragment-id="${frag.id}"]`);
-      if (nodeEl) nodeEl.classList.add('node-target');
-    }
+  fragmentIds.forEach(id => {
+    const nodeEl = _bodyEl.querySelector(`.matrix-node[data-fragment-id="${id}"]`);
+    if (nodeEl) nodeEl.classList.add('node-target');
   });
 }
 
@@ -155,9 +158,27 @@ function _createNodeEl(fragment, nodeId, position) {
     _clickDownPos = null;
     if (Math.sqrt(dx * dx + dy * dy) > 6) return;
 
-    if (!gameState.flags.notepadGateCleared) {
-      pushStatus('COMPLETE OPERATOR LOG BEFORE ACCESSING MATRIX.');
+    const isVisited = el.classList.contains('visited');
+    const isTarget  = el.classList.contains('node-target');
+
+    if (isVisited) {
+      // Previously viewed — always accessible
+    } else if (isTarget) {
+      // Valid target but line not drawn yet
+      _flashNode(el, 'orange');
+      pushStatus('DRAW A CONNECTION LINE TO ACCESS THIS FRAGMENT.');
       return;
+    } else {
+      if (!gameState.flags.notepadGateCleared) {
+        _flashNode(el, 'red');
+        pushStatus('ACCESS DENIED — SUBMIT OPERATOR LOG TO UNLOCK MATRIX.');
+        return;
+      }
+      if (_bodyEl.classList.contains('matrix-locked') && !el.classList.contains('active')) {
+        _flashNode(el, 'red');
+        pushStatus('ACCESS DENIED — FRAGMENT NOT YET REACHED IN INVESTIGATION.');
+        return;
+      }
     }
 
     const fragment = gameState.loadedFragments.find(f => f.id === el.dataset.fragmentId);
@@ -316,7 +337,8 @@ function _onDraftMouseup(event) {
   const fragB = gameState.loadedFragments.find(f => f.id === toFragId);
   if (!fragA || !fragB) return;
 
-  if (!canConnect(fragA, fragB)) {
+  const isHighlightedTarget = toNodeEl.classList.contains('node-target');
+  if (!isHighlightedTarget && !canConnect(fragA, fragB)) {
     pushStatus('ANCHOR VERIFICATION FAILED — NO LOGICAL LINK CONFIRMED.');
     return;
   }
@@ -455,17 +477,20 @@ function initMatrix() {
   on('matrix:connectionRemoved',  _onConnectionRemoved);
   on('fragment:redactionToggled', _onRedactionToggled);
 
-  on('checkpoint:advanced', () => {
+  on('matrix:targets', ({ fragmentIds }) => {
     gameState.flags.notepadGateCleared = true;
     _unlockedFragmentId = _currentNodeFragId;
-    _bodyEl.classList.remove('matrix-locked');
-    _highlightTargets(_currentNodeFragId);
+    // Keep matrix-locked so non-target nodes stay dimmed; only targets glow through
+    _highlightTargets(fragmentIds);
   });
 
   on('fragment:load', ({ fragment }) => {
     _bodyEl.querySelectorAll('.matrix-node').forEach(el => el.classList.remove('active'));
     const activeEl = _bodyEl.querySelector(`.matrix-node[data-fragment-id="${fragment.id}"]`);
-    if (activeEl) activeEl.classList.add('active');
+    if (activeEl) {
+      activeEl.classList.add('active');
+      activeEl.classList.add('visited'); // visited nodes are always accessible
+    }
   });
 
   _wireDraftListeners();

@@ -157,10 +157,17 @@ function _onAdvance() {
   // Advance the checkpoint counter
   advanceCheckpoint();
 
-  // Matrix handles next-step guidance via node highlighting — no prompt panel needed
+  // Tell the matrix which nodes to highlight as valid next choices
+  const nextCp = _caseCheckpoints[gameState.currentCheckpoint];
+  const targetIds = nextCp && nextCp.prompts
+    ? [...new Set(nextCp.prompts.map(p => p.fragment_id))]
+    : [];
+  dispatch('matrix:targets', { fragmentIds: targetIds });
+
   _notepadInput.value = '';
   _advanceBtn.disabled = true;
   _updateGateText();
+  closeNotepad();
 }
 
 // ─── Restore entries from saved state ────────────────────────────────────────
