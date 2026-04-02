@@ -11,6 +11,10 @@ let _draft = { active: false, fromNodeEl: null, fromFragId: null, lineEl: null }
 // ─── Debounce timer for position saves ────────────────────────────────────────
 let _positionSaveTimer = null;
 
+// ─── Click-vs-drag tracking ───────────────────────────────────────────────────
+// Captures pointer-down position so we can ignore click events that follow a drag.
+let _clickDownPos = null;
+
 // ─── Case loaded ──────────────────────────────────────────────────────────────
 function _onCaseLoaded({ fragments }) {
   _clearBoard();
@@ -105,6 +109,25 @@ function _createNodeEl(fragment, nodeId, position) {
   leftDot.addEventListener('pointerdown',  _onConnectorMousedown);
   rightDot.addEventListener('pointerdown', _onConnectorMousedown);
   el.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Record pointer position on node body press (skip connector dots)
+  el.addEventListener('pointerdown', e => {
+    if (e.target.classList.contains('connector-point')) return;
+    _clickDownPos = { x: e.clientX, y: e.clientY };
+  });
+
+  // Click-to-view: load this fragment in the Fragment Viewer.
+  // Ignored if the pointer moved more than 6px (was a drag, not a tap).
+  el.addEventListener('click', e => {
+    if (!_clickDownPos) return;
+    const dx = e.clientX - _clickDownPos.x;
+    const dy = e.clientY - _clickDownPos.y;
+    _clickDownPos = null;
+    if (Math.sqrt(dx * dx + dy * dy) > 6) return;
+
+    const fragment = gameState.loadedFragments.find(f => f.id === el.dataset.fragmentId);
+    if (fragment) dispatch('fragment:load', { fragment });
+  });
 
   return el;
 }

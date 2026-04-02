@@ -47,7 +47,9 @@ body {
   max-width: none;
   background: none;
   background-image: none;
-  border-radius: 0;
+  /* Clip corners to match the rounded bezel in the photo */
+  border-radius: 8px;
+  overflow: hidden;
   box-shadow: none;
   padding: 0;
 }
@@ -64,7 +66,33 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--c-screen);
-  border-radius: 6px;
+
+  /*
+   * Curved monitor clip — polygon points approximate the concave bow of a
+   * physically curved panel. Top/bottom edges arc by ~2% of height at the
+   * corners; the middle stays flush with the panel center.
+   * Percentage values keep this fully responsive.
+   */
+  clip-path: polygon(
+    0%    2%,
+    5%    1.1%,
+    15%   0.4%,
+    30%   0.1%,
+    50%   0%,
+    70%   0.1%,
+    85%   0.4%,
+    95%   1.1%,
+    100%  2%,
+    100%  98%,
+    95%   98.9%,
+    85%   99.6%,
+    70%   99.9%,
+    50%   100%,
+    30%   99.9%,
+    15%   99.6%,
+    5%    98.9%,
+    0%    98%
+  );
 
   /* Deep screen-edge darkness */
   box-shadow:
@@ -73,7 +101,7 @@ body {
     0 0 0 1px rgba(0, 0, 0, 0.9);
 
   /* Subtle CRT barrel suggestion */
-  transform: perspective(1200px) rotateX(0.4deg);
+  transform: perspective(1400px) rotateX(0.5deg) rotateY(-0.2deg);
 }
 
 /* ── Scanlines ────────────────────────────────────────────────────────────── */
