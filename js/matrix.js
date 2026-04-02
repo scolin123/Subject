@@ -86,6 +86,16 @@ function _flashNode(el, color) {
   el.addEventListener('animationend', () => el.classList.remove(cls), { once: true });
 }
 
+// ─── Node denial overlay ──────────────────────────────────────────────────────
+function _showNodeOverlay(el, text, color) {
+  el.querySelector('.node-denial-overlay')?.remove();
+  const overlay = document.createElement('div');
+  overlay.className = 'node-denial-overlay ' + (color === 'red' ? 'denial-red' : 'denial-orange');
+  overlay.textContent = text;
+  el.appendChild(overlay);
+  overlay.addEventListener('animationend', () => overlay.remove(), { once: true });
+}
+
 // ─── Target highlighting ──────────────────────────────────────────────────────
 function _clearTargetHighlights() {
   _bodyEl.querySelectorAll('.matrix-node.node-target').forEach(el => el.classList.remove('node-target'));
@@ -166,16 +176,19 @@ function _createNodeEl(fragment, nodeId, position) {
     } else if (isTarget) {
       // Valid target but line not drawn yet
       _flashNode(el, 'orange');
+      _showNodeOverlay(el, '// CONNECT FIRST', 'orange');
       pushStatus('DRAW A CONNECTION LINE TO ACCESS THIS FRAGMENT.');
       return;
     } else {
       if (!gameState.flags.notepadGateCleared) {
         _flashNode(el, 'red');
+        _showNodeOverlay(el, '// LOCKED', 'red');
         pushStatus('ACCESS DENIED — SUBMIT OPERATOR LOG TO UNLOCK MATRIX.');
         return;
       }
       if (_bodyEl.classList.contains('matrix-locked') && !el.classList.contains('active')) {
         _flashNode(el, 'red');
+        _showNodeOverlay(el, '// RESTRICTED', 'red');
         pushStatus('ACCESS DENIED — FRAGMENT NOT YET REACHED IN INVESTIGATION.');
         return;
       }

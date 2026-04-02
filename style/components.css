@@ -290,6 +290,31 @@
   animation: node-flash-orange 0.7s ease forwards;
 }
 
+/* ── Node denial overlay ──────────────────────────────────────────────────── */
+.node-denial-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-terminal);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  z-index: 10;
+  animation: node-denial-fade 1.1s ease forwards;
+}
+
+.node-denial-overlay.denial-red    { color: var(--c-red); }
+.node-denial-overlay.denial-orange { color: var(--c-amber); }
+
+@keyframes node-denial-fade {
+  0%   { opacity: 0;   transform: scale(0.85); }
+  15%  { opacity: 1;   transform: scale(1.05); }
+  35%  { opacity: 1;   transform: scale(1);    }
+  100% { opacity: 0;   transform: scale(1);    }
+}
+
 /* ── Node target (valid connection destination from current node) ────────── */
 .matrix-node.node-target {
   border-color: var(--c-phosphor-dim);
