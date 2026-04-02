@@ -15,8 +15,17 @@ let _positionSaveTimer = null;
 // Captures pointer-down position so we can ignore click events that follow a drag.
 let _clickDownPos = null;
 
+// ─── Connection gate ──────────────────────────────────────────────────────────
+// _currentNodeFragId: the node the player is currently branching FROM.
+// _unlockedFragmentId: mirrors _currentNodeFragId while the gate is open —
+//   only this node's connectors can initiate a drag.
+let _currentNodeFragId  = null;
+let _unlockedFragmentId = null;
+
 // ─── Case loaded ──────────────────────────────────────────────────────────────
 function _onCaseLoaded({ fragments }) {
+  _unlockedFragmentId = null;
+  _currentNodeFragId  = fragments.find(f => f.checkpoint === 0)?.id || null;
   _clearBoard();
 
   const savedNodes = gameState.matrix.nodes;
@@ -46,6 +55,7 @@ function _onCaseLoaded({ fragments }) {
   }
 
   if (_statusEl) _statusEl.textContent = 'AWAITING INPUT';
+  _bodyEl.classList.add('matrix-locked');
 }
 
 // ─── Clear board ──────────────────────────────────────────────────────────────
@@ -65,6 +75,25 @@ function _gridPosition(index, total) {
     x: MARGIN_X + (index % COLS) * COL_W,
     y: MARGIN_Y + Math.floor(index / COLS) * ROW_H,
   };
+}
+
+// ─── Target highlighting ──────────────────────────────────────────────────────
+function _clearTargetHighlights() {
+  _bodyEl.querySelectorAll('.matrix-node.node-target').forEach(el => el.classList.remove('node-target'));
+}
+
+function _highlightTargets(sourceFragId) {
+  _clearTargetHighlights();
+  if (!sourceFragId) return;
+  const sourceFrag = gameState.loadedFragments.find(f => f.id === sourceFragId);
+  if (!sourceFrag) return;
+  gameState.loadedFragments.forEach(frag => {
+    if (frag.id === sourceFragId) return;
+    if (canConnect(sourceFrag, frag)) {
+      const nodeEl = _bodyEl.querySelector(`.matrix-node[data-fragment-id="${frag.id}"]`);
+      if (nodeEl) nodeEl.classList.add('node-target');
+    }
+  });
 }
 
 // ─── Create node element ──────────────────────────────────────────────────────
@@ -125,6 +154,11 @@ function _createNodeEl(fragment, nodeId, position) {
     const dy = e.clientY - _clickDownPos.y;
     _clickDownPos = null;
     if (Math.sqrt(dx * dx + dy * dy) > 6) return;
+
+    if (!gameState.flags.notepadGateCleared) {
+      pushStatus('COMPLETE OPERATOR LOG BEFORE ACCESSING MATRIX.');
+      return;
+    }
 
     const fragment = gameState.loadedFragments.find(f => f.id === el.dataset.fragmentId);
     if (fragment) dispatch('fragment:load', { fragment });
@@ -221,8 +255,12 @@ function _onConnectorMousedown(event) {
   event.stopPropagation();
   event.preventDefault();
   if (_draft.active) return;
-
-  const dot      = event.currentTarget;
+  if (!gameState.flags.notepadGateCleared) {
+    pushStatus('COMPLETE OPERATOR LOG BEFORE ACCESSING MATRIX.');
+    return;
+  }
+  const dot = event.currentTarget;
+  if (_unlockedFragmentId && dot.dataset.fragmentId !== _unlockedFragmentId) return;
   const fragId   = dot.dataset.fragmentId;
   const nodeEl   = _bodyEl.querySelector(`.matrix-node[data-node-id="${dot.dataset.nodeId}"]`);
   if (!nodeEl) return;
@@ -290,6 +328,17 @@ function _onDraftMouseup(event) {
 function _onConnectionAdded({ connection }) {
   _drawLine(connection.from, connection.to);
   _refreshNodeColors();
+  _clearTargetHighlights();
+
+  // The node connected TO becomes the new current node
+  _currentNodeFragId = connection.to;
+  const toFrag = gameState.loadedFragments.find(f => f.id === connection.to);
+  if (toFrag) dispatch('fragment:load', { fragment: toFrag });
+
+  // Re-lock — player must log before the next connection
+  gameState.flags.notepadGateCleared = false;
+  _unlockedFragmentId = null;
+  _bodyEl.classList.add('matrix-locked');
 }
 
 function _onConnectionRemoved({ fromId, toId }) {
@@ -405,6 +454,13 @@ function initMatrix() {
   on('matrix:connectionAdded',    _onConnectionAdded);
   on('matrix:connectionRemoved',  _onConnectionRemoved);
   on('fragment:redactionToggled', _onRedactionToggled);
+
+  on('checkpoint:advanced', () => {
+    gameState.flags.notepadGateCleared = true;
+    _unlockedFragmentId = _currentNodeFragId;
+    _bodyEl.classList.remove('matrix-locked');
+    _highlightTargets(_currentNodeFragId);
+  });
 
   on('fragment:load', ({ fragment }) => {
     _bodyEl.querySelectorAll('.matrix-node').forEach(el => el.classList.remove('active'));

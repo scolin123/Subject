@@ -157,15 +157,10 @@ function _onAdvance() {
   // Advance the checkpoint counter
   advanceCheckpoint();
 
-  // Show prompt choices (or dispatch directly if no prompts defined)
-  const cp = _caseCheckpoints[gameState.currentCheckpoint];
-  if (cp && cp.prompts && cp.prompts.length) {
-    showPromptPanel();
-  } else {
-    _notepadInput.value = '';
-    _advanceBtn.disabled = true;
-    _updateGateText();
-  }
+  // Matrix handles next-step guidance via node highlighting — no prompt panel needed
+  _notepadInput.value = '';
+  _advanceBtn.disabled = true;
+  _updateGateText();
 }
 
 // ─── Restore entries from saved state ────────────────────────────────────────

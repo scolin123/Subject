@@ -265,6 +265,27 @@
   color: var(--c-phosphor);
 }
 
+/* ── Node target (valid connection destination from current node) ────────── */
+.matrix-node.node-target {
+  border-color: var(--c-phosphor-dim);
+  box-shadow: 0 0 10px var(--c-phosphor-glow), 0 0 0 1px var(--c-phosphor-dim);
+}
+
+.matrix-node.node-target .node-title {
+  color: var(--c-phosphor-dim);
+}
+
+/* ── Matrix locked (awaiting notepad entry + prompt choice) ─────────────── */
+#matrix-body.matrix-locked .matrix-node:not(.active) {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+#matrix-body.matrix-locked .connector-point {
+  opacity: 0.1;
+  cursor: not-allowed;
+}
+
 /* ── Paradox label ────────────────────────────────────────────────────────── */
 .node-paradox-label {
   display: block;
