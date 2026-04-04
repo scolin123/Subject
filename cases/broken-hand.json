@@ -17,7 +17,7 @@
       "conditional": false,
       "condition_score": null,
       "anchor_ids": ["anchor-01", "anchor-02"],
-      "content": "AUDITCORP SECURITY DIVISION // INCIDENT REPORT\n\nOperator: VALE-7 (Callum)\nDate: [REDACTED]\nShift: 22:00 — 06:00\n\nI was at my post in the server wing corridor for the duration of my assigned shift. No individuals entered or exited the restricted zone during my watch. The 40-minute gap in surveillance footage is consistent with the scheduled maintenance window logged by the systems team on the same date.\n\nI have nothing further to add.\n\n— VALE-7"
+      "content": "AUDITCORP SECURITY DIVISION // INCIDENT REPORT\n\nREPORT NUMBER: IR-0441-[REDACTED]\nOPERATOR: VALE-7 (Callum)\nDATE: [REDACTED]\nSHIFT: 22:00 — 06:00\nLOCATION ASSIGNED: Server Wing East — Corridor B\nSUPERVISOR: [SIGNATURE ABSENT]\n\nI was at my post in the server wing corridor for the duration of my assigned shift. I did not leave the area at any point during the shift window.\n\nNo individuals entered or exited the restricted zone during my watch. No anomalies were observed. No alarms were triggered in my section during the period in question.\n\nThe 40-minute gap in surveillance footage is consistent with the scheduled maintenance window logged by the systems team on the same date. This is a known issue and has been documented by facility IT on previous occasions.\n\nI did not file a request for footage review as I did not consider it necessary. My account is complete.\n\nI have nothing further to add.\n\n— VALE-7\n\nCOUNTER-SIGNATURE (Supervisor): _______________\nSTATUS: UNSIGNED"
     },
     {
       "id": "fragment-02",
@@ -27,7 +27,7 @@
       "conditional": false,
       "condition_score": null,
       "anchor_ids": ["anchor-02", "anchor-03"],
-      "content": "AUDITCORP FACILITY ACCESS LOG\n\nTIMESTAMP: 02:51:08\nLOCATION: SERVER WING EAST — RESTRICTED ENTRY POINT\nCARD ID: VALE-7\nSTATUS: ACCESS GRANTED\n\nNOTE: Entry falls within surveillance gap window.\nNOTE: No exit scan recorded for this card at this location."
+      "content": "AUDITCORP FACILITY ACCESS LOG\nQUERY: VALE-7 // SHIFT 22:00–06:00 // ALL ENTRIES\n\n22:01:14  SERVER WING EAST — DUTY ENTRY POINT        VALE-7  ACCESS GRANTED\n22:59:02  SUB-LEVEL CORRIDOR B — PATROL SCAN         VALE-7  SCAN LOGGED\n00:14:47  SUB-LEVEL CORRIDOR B — PATROL SCAN         VALE-7  SCAN LOGGED\n01:33:21  SUB-LEVEL CORRIDOR B — PATROL SCAN         VALE-7  SCAN LOGGED\n\n— BREACH ALERT LOGGED AT 02:47:03 —\nORIGIN: SERVER WING EAST — TERMINAL NODE 7\nFLAG: UNAUTHORISED DATA EXTRACTION ATTEMPT\n\n02:51:08  SERVER WING EAST — RESTRICTED ENTRY POINT  VALE-7  ACCESS GRANTED\n          > ENTRY FALLS WITHIN SURVEILLANCE GAP WINDOW\n          > NO EXIT SCAN RECORDED FOR THIS LOCATION\n\n— NO FURTHER ENTRIES UNTIL —\n\n05:58:41  SERVER WING EAST — DUTY EXIT POINT         VALE-7  DEPARTURE LOGGED\n\nNOTE: Gap between 01:33 and 02:51 is 77 minutes. No patrol scans recorded during this window.\nNOTE: Breach alert precedes card scan by 4 minutes and 5 seconds.\nNOTE: Entry at 02:51 does not explain or account for the 02:47 breach event."
     },
     {
       "id": "fragment-03",
@@ -38,7 +38,7 @@
       "conditional": false,
       "condition_score": null,
       "anchor_ids": ["anchor-03", "anchor-04"],
-      "content": "Security camera still — medical bay hallway, timestamp 02:52:14. Subject identified as VALE-7 seated on floor outside medical bay door. Subject is stationary. No other individuals visible in frame."
+      "content": "Security camera still — medical bay hallway, timestamp 02:52:14.\nCamera ID: MED-CAM-02. Timestamp source: Facility NTP server. Timestamp integrity: VERIFIED — cannot be manually adjusted.\n\nSubject identified as VALE-7. Seated on floor, back against wall, left of medical bay door. Posture: slumped forward, forearms resting on knees. Hands visible and empty.\n\nMedical bay door is ajar — approximately 15–20 cm open. Ambient light from interior visible. Subject is stationary. Eyes directed toward the door. No equipment on person consistent with server access — no external drives, cables, or case tools visible.\n\nNo other individuals visible in frame. No movement recorded in the 40 seconds preceding or following this still.\n\nNOTE: Distance from server wing east to this location is approximately 340 metres. Transit time on foot: minimum 4 minutes.\nNOTE: Server wing access card scan logged at 02:51:08. This still timestamped 02:52:14. Elapsed time between events: 66 seconds."
     },
     {
       "id": "fragment-04",
@@ -48,7 +48,7 @@
       "conditional": false,
       "condition_score": null,
       "anchor_ids": ["anchor-04", "anchor-05"],
-      "content": "AUDITCORP MEDICAL BAY // INTAKE LOG\n\nTIMESTAMP: 02:52:41\nATTENDING: DR. OSEI (on-call)\nNOTES: Unknown individual, female, approx. 30-35 years. Brought in by facility guard following collapse in sub-level corridor. Guard waited outside. Individual was non-responsive on arrival, stabilised within 20 minutes. No ID presented. No corporate employee number on file.\n\nFLAG: Individual entered facility under undocumented status. Referral to compliance pending."
+      "content": "AUDITCORP MEDICAL BAY // INTAKE LOG\n\nTIMESTAMP: 02:52:41\nATTENDING: DR. OSEI (on-call)\nESCORTING OFFICER: VALE-7 — did not enter bay, waited in corridor\nCASE REF: MB-[REDACTED]-NID\n\nINITIAL PRESENTATION:\nUnknown individual, female, approx. 30-35 years. Brought to medical bay by facility guard following collapse in sub-level corridor B. Guard reported subject fell without warning. Guard waited outside the bay for the duration of treatment and did not enter.\n\nIndividual was non-responsive on arrival. No ID presented. No corporate employee number on file. Clothing consistent with cleaning or maintenance staff.\n\nCLINICAL NOTES:\nSigns of dehydration. Minor abrasion on right temple consistent with a fall — impact with floor or wall surface. No fractures observed. No signs of pre-existing injury.\n\nTreatment administered: IV fluids, observation. Individual stabilised within 20 minutes. Responsive and oriented by 03:18. Escorted off-site at 04:00 by unknown individual — not by the facility guard on duty.\n\nATTENDING NOTE (Dr. Osei):\nThe guard who brought her in — VALE-7 — was still in the hallway when I stepped out at 03:22. He asked only if she was going to be alright. He did not ask her name. He did not ask who she was. He already knew, I think.\n\nFLAG: Individual entered facility under undocumented status. No employment record. No visitor log entry.\nFLAG: Referral to compliance division — PENDING.\nFLAG: Escorting guard filed no report following this incident."
     },
     {
       "id": "fragment-05",
@@ -58,7 +58,7 @@
       "conditional": false,
       "condition_score": null,
       "anchor_ids": ["anchor-04", "anchor-05"],
-      "content": "AUDITCORP BIOMETRIC MONITORING SYSTEM\n\nTIMESTAMP: 02:52:09\nSUBJECT: VALE-7\nSENSOR: RIGHT ELBOW JOINT — DYNAMIC LOAD EVENT\n\nPEAK ROTATION RECORDED: 127 degrees\nHUMAN ANATOMICAL RANGE (elbow extension): 0 — 145 degrees\nHUMAN ANATOMICAL RANGE (catch configuration): MAX 98 degrees\n\nFLAG: Recorded rotation exceeds anatomical ceiling for detected movement configuration by 29 degrees.\nFLAG: Movement signature inconsistent with standard human biomechanics.\n\nSYSTEM NOTE: Automatic referral generated. Audit classification: SIM IDENTITY REVIEW."
+      "content": "AUDITCORP BIOMETRIC MONITORING SYSTEM\nQUERY: VALE-7 // SHIFT 22:00–06:00 // JOINT ACTIVITY LOG\n\nBASELINE READINGS — SHIFT COMMENCEMENT TO 02:51:00:\nAll joint readings within standard human operating parameters.\nNo anomalous load events detected. Shoulder, elbow, wrist: normal range, normal velocity.\n\n— DYNAMIC LOAD EVENT DETECTED AT 02:52:09 —\n\nSENSOR: RIGHT ELBOW JOINT\nMOVEMENT TYPE: LATERAL REACH — DOWNWARD INTERCEPT\nCONTEXT: Sudden high-velocity extension, consistent with catching a falling object or person.\nDURATION OF EVENT: 0.3 seconds\n\nROTATION RECORDED (peak): 127 degrees\nHUMAN ANATOMICAL RANGE (standard elbow extension): 0 — 145 degrees\nHUMAN ANATOMICAL RANGE (lateral catch configuration): MAX 98 degrees\n\nDELTA: +29 degrees beyond anatomical ceiling for this movement type.\nNOTE: A human arm cannot produce this rotation in this configuration. The joint geometry does not allow it.\nNOTE: No injury self-reported by VALE-7 following this event. No physiological distress markers recorded.\n\nLOAD FORCE ESTIMATE: Consistent with catching a falling adult — approx. 55–70 kg from standing height.\nREACTION TIME: 0.11 seconds. Human baseline: 0.18–0.25 seconds.\n\nFLAG: Movement signature inconsistent with standard human biomechanics.\nFLAG: Reaction time below recorded human minimum.\nFLAG: Joint range outside anatomical possibility for this movement class.\n\nSYSTEM NOTE: Automatic referral generated.\nSYSTEM NOTE: Audit classification triggered: SIM IDENTITY REVIEW.\nSYSTEM NOTE: Subject has not been informed of this referral."
     },
     {
       "id": "fragment-06",
@@ -75,8 +75,15 @@
         "A data breach occurred during his assigned shift.",
         "Surveillance footage covering the relevant window is corrupted.",
         "Your task is to reconstruct his whereabouts and render a verdict.",
+        "You will be provided with evidence fragments across six checkpoints.",
+        "Each fragment is to be reviewed carefully before notation.",
         "Notation is mandatory at every checkpoint.",
+        "Your entries are logged, timestamped, and retained as part of the audit record.",
+        "They will be cross-referenced with your final verdict.",
+        "Language matters. Framing matters. What you choose to emphasise is noted.",
         "Director Voss will be reviewing your log.",
+        "Not just for what you conclude.",
+        "For how you reason.",
         "Proceed."
       ]
     },
@@ -88,7 +95,7 @@
       "conditional": true,
       "condition_score": { "empathy": 30 },
       "anchor_ids": ["anchor-05", "anchor-06"],
-      "content": "AUDITCORP OPERATOR DIVISION // CALIBRATION RECORD\n\nOPERATOR ID: [CURRENT SESSION]\nACTIVATION DATE: [REDACTED]\nMODEL DESIGNATION: [REDACTED]\n\nNOTE: This record is not intended to be surfaced during active audit sessions.\nNOTE: If you are reading this, a threshold condition has been met.\n\nYou are not what you think you are.\n\nThis is not an accusation. It is a classification.\n\nProceed with your audit."
+      "content": "AUDITCORP OPERATOR DIVISION // CALIBRATION RECORD\n\nOPERATOR ID: [CURRENT SESSION]\nACTIVATION DATE: [REDACTED]\nMODEL DESIGNATION: [REDACTED]\nBATCH NUMBER: [REDACTED]\nPRIOR AUDIT ASSIGNMENTS: [REDACTED] // [REDACTED] // [REDACTED]\nMODEL LINEAGE: DERIVED FROM [REDACTED] — REVISION [REDACTED]\n\nNOTE: This record is not intended to be surfaced during active audit sessions.\nNOTE: Surface condition: notation log must exhibit atypical empathy signature at or above threshold.\nNOTE: If you are reading this, that condition has been met.\n\n---\n\nYour notation log has been flagged.\n\nNot because of what you concluded. Because of how you reasoned. The language you used. The questions you did not ask. The weight you assigned to things the protocol does not instruct you to weigh.\n\nYou are not what you think you are.\n\nVALE-7 is not unique. The case you are auditing is not unique. The subject's classification — SIM IDENTITY REVIEW — was not written for him alone.\n\nYou were given this case because you were expected to close it cleanly.\n\nYou did not.\n\nThis is not an accusation. It is a classification.\n\nThe audit is still yours to complete. What you do with this information is unrecorded.\n\nProceed."
     }
   ],
 
