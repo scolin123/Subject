@@ -105,7 +105,8 @@
     { "id": "anchor-03", "label": "Dual location paradox", "type": "contradiction" },
     { "id": "anchor-04", "label": "Medical bay / 02:52", "type": "location-time" },
     { "id": "anchor-05", "label": "Biomechanical anomaly", "type": "biological" },
-    { "id": "anchor-06", "label": "Sim identity classification", "type": "classification" }
+    { "id": "anchor-06", "label": "Sim identity classification", "type": "classification" },
+    { "id": "anchor-07", "label": "Industrial Solvent Trace", "type": "environmental" }
   ],
 
   "checkpoints": [
