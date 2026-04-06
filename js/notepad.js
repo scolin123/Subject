@@ -3,8 +3,8 @@
 // ─── Hidden prompt unlock thresholds (mirrors checkpoints.md) ─────────────────
 const HIDDEN_UNLOCK = {
   0: null, // all prompts visible at checkpoint 0
-  1: s => s.empathy >= 10 || s.compliance >= 10,
-  2: s => s.empathy >= 15 || s.compliance >= 15,
+  1: s => s.empathy >= 5 || s.compliance >= 5,
+  2: s => s.empathy >= 10 || s.compliance >= 10,
   3: s => s.empathy >= 20 || s.compliance >= 20 || s.sabotage >= 2,
   4: s => s.empathy >= 25 || s.compliance >= 25 || s.detection >= 3,
   5: s => s.empathy >= 30 || s.compliance >= 30 || s.sabotage >= 4,

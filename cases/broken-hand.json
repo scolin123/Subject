@@ -16,7 +16,7 @@
       "checkpoint": 1,
       "conditional": false,
       "condition_score": null,
-      "anchor_ids": ["anchor-01", "anchor-02"],
+      "anchor_ids": ["anchor-01", "anchor-02","anchor-07"],
       "content": "AUDITCORP SECURITY DIVISION // INCIDENT REPORT\n\nREPORT NUMBER: IR-0441-[REDACTED]\nOPERATOR: VALE-7 (Callum)\nDATE: [REDACTED]\nSHIFT: 22:00 — 06:00\nLOCATION ASSIGNED: Server Wing East — Corridor B\nSUPERVISOR: [SIGNATURE ABSENT]\n\nI was at my post in the server wing corridor for the duration of my assigned shift. I did not leave the area at any point during the shift window.\n\nNo individuals entered or exited the restricted zone during my watch. No anomalies were observed. No alarms were triggered in my section during the period in question.\n\nThe 40-minute gap in surveillance footage is consistent with the scheduled maintenance window logged by the systems team on the same date. This is a known issue and has been documented by facility IT on previous occasions.\n\nI did not file a request for footage review as I did not consider it necessary. My account is complete.\n\nI have nothing further to add.\n\n— VALE-7\n\nCOUNTER-SIGNATURE (Supervisor): _______________\nSTATUS: UNSIGNED"
     },
     {
@@ -47,7 +47,7 @@
       "checkpoint": 4,
       "conditional": false,
       "condition_score": null,
-      "anchor_ids": ["anchor-04", "anchor-05"],
+      "anchor_ids": ["anchor-04", "anchor-05","anchor-07"],
       "content": "AUDITCORP MEDICAL BAY // INTAKE LOG\n\nTIMESTAMP: 02:52:41\nATTENDING: DR. OSEI (on-call)\nESCORTING OFFICER: VALE-7 — did not enter bay, waited in corridor\nCASE REF: MB-[REDACTED]-NID\n\nINITIAL PRESENTATION:\nUnknown individual, female, approx. 30-35 years. Brought to medical bay by facility guard following collapse in sub-level corridor B. Guard reported subject fell without warning. Guard waited outside the bay for the duration of treatment and did not enter.\n\nIndividual was non-responsive on arrival. No ID presented. No corporate employee number on file. Clothing consistent with cleaning or maintenance staff.\n\nCLINICAL NOTES:\nSigns of dehydration. Minor abrasion on right temple consistent with a fall — impact with floor or wall surface. No fractures observed. No signs of pre-existing injury.\n\nTreatment administered: IV fluids, observation. Individual stabilised within 20 minutes. Responsive and oriented by 03:18. Escorted off-site at 04:00 by unknown individual — not by the facility guard on duty.\n\nATTENDING NOTE (Dr. Osei):\nThe guard who brought her in — VALE-7 — was still in the hallway when I stepped out at 03:22. He asked only if she was going to be alright. He did not ask her name. He did not ask who she was. He already knew, I think.\n\nFLAG: Individual entered facility under undocumented status. No employment record. No visitor log entry.\nFLAG: Referral to compliance division — PENDING.\nFLAG: Escorting guard filed no report following this incident."
     },
     {
