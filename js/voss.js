@@ -5,6 +5,7 @@
 function _onVossMemoTrigger({ fragment }) {
   if (!fragment) return;
   dispatch('fragment:load', { fragment });
+  autoAdvanceVoss();
 }
 
 function initVoss() {

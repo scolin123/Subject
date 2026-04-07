@@ -143,6 +143,7 @@ async function handlePromptChoice(prompt, checkpointId) {
 function _onAdvance() {
   const text = _notepadInput.value.trim();
   if (text.length < 20) return;
+  if (gameState.matrix.connections.length === 0) return;
 
   // Commit entry to state
   commitNotepadEntry(text);
@@ -168,6 +169,17 @@ function _onAdvance() {
   _advanceBtn.disabled = true;
   _updateGateText();
   closeNotepad();
+}
+
+// ─── Auto-advance past checkpoint 0 (Voss memo requires no notation) ─────────
+function autoAdvanceVoss() {
+  advanceCheckpoint(); // 0 → 1, sets notepadGateCleared = false
+  const nextCp    = _caseCheckpoints[gameState.currentCheckpoint];
+  const targetIds = nextCp && nextCp.prompts
+    ? [...new Set(nextCp.prompts.map(p => p.fragment_id))]
+    : [];
+  dispatch('matrix:targets', { fragmentIds: targetIds }); // sets notepadGateCleared = true
+  _updateGateText();
 }
 
 // ─── Restore entries from saved state ────────────────────────────────────────
@@ -233,6 +245,7 @@ function initNotepad() {
 Object.assign(window, {
   initNotepad,
   setCaseData,
+  autoAdvanceVoss,
   isHiddenUnlocked,
   showPromptPanel,
   hidePromptPanel,
