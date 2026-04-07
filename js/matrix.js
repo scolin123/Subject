@@ -187,9 +187,21 @@ function _createNodeEl(fragment, nodeId, position) {
         return;
       }
       if (_bodyEl.classList.contains('matrix-locked') && !el.classList.contains('active')) {
-        _flashNode(el, 'red');
-        _showNodeOverlay(el, '// RESTRICTED', 'red');
-        pushStatus('ACCESS DENIED — FRAGMENT NOT YET REACHED IN INVESTIGATION.');
+        const clickedFrag = gameState.loadedFragments.find(f => f.id === el.dataset.fragmentId);
+        const anchorReachable = clickedFrag && [..._bodyEl.querySelectorAll('.matrix-node.visited')]
+          .some(vEl => {
+            const vFrag = gameState.loadedFragments.find(f => f.id === vEl.dataset.fragmentId);
+            return vFrag && canConnect(clickedFrag, vFrag);
+          });
+        if (anchorReachable) {
+          _flashNode(el, 'orange');
+          _showNodeOverlay(el, '// CONNECT FIRST', 'orange');
+          pushStatus('DRAW A CONNECTION LINE TO ACCESS THIS FRAGMENT.');
+        } else {
+          _flashNode(el, 'red');
+          _showNodeOverlay(el, '// RESTRICTED', 'red');
+          pushStatus('ACCESS DENIED — FRAGMENT NOT YET REACHED IN INVESTIGATION.');
+        }
         return;
       }
     }
